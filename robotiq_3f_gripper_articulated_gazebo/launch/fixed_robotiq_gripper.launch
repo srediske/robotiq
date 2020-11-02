@@ -16,19 +16,16 @@
 
   <!-- Start the publisher for the left hand (the only hand) -->
   <node pkg="robot_state_publisher" type="robot_state_publisher" name="robotiq_robot_state_publisher">
-    <param name="robot_description" value="robot_description"/>                                                         <!-- added -->
-    <param name="tf_prefix" type="string" value="" />                                                                   <!-- added -->
+    <param name="robot_description" value="robot_description"/>
+    <param name="tf_prefix" type="string" value="" />
     <param name="publish_frequency" type="double" value="50.0" />
     <remap from="joint_states" to="/robotiq_hands/left_hand/joint_states" />
   </node>
-
-  <!--node pkg="rostopic" type="rostopic" name="fake_joint_calibration" args="pub /calibrated std_msgs/Bool true"/-->
 
   <node name="robot_controller" pkg="controller_manager" type="spawner" args="joint_state_controller" output="screen"/>
 
   <!-- Add controller -->
   <rosparam file="$(find robotiq_3f_gripper_articulated_gazebo)/config/robotiq_3f_controller.yaml" command="load"/>
-    <!--node name="robotiq_controller_spawner" pkg="controller_manager" type="controller_manager" args="robotiq_3f_controller" respawn="false" output="screen"/-->
     <node name="robotiq_controller_spawner" pkg="controller_manager" type="spawner" args="robotiq_3f_controller" respawn="false" output="screen"/>
 
 </launch>

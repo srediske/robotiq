@@ -1,6 +1,6 @@
-robotiq_joint_state_controller:
+joint_state_controller:
     type: joint_state_controller/JointStateController
-    publish_rate: &loop_hz 50
+    publish_rate: &loop_hz 500
 
 # Effort Controllers
 robotiq_3f_controller:
