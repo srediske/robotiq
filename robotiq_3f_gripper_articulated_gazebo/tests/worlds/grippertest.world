@@ -5,10 +5,11 @@
             <ambient>0.1 0.1 0.1 1</ambient>
             <shadows>false</shadows>
         </scene>
-        <gui>
-            <fullscreen>0</fullscreen>
+        <gui fullscreen="0">
             <camera name="cam">
-                <pose>0.187 0.318 0.389 0.0 0.735 -2.279</pose>
+                <pose>0.151767 0.261614 0.246337 0.0 0.482999 -2.271</pose>
+                <view_controller>orbit</view_controller>
+                <projection_type>perspective</projection_type>
             </camera>
         </gui>
         <physics name="ode" type="ode">
