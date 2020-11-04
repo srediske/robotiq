@@ -16,7 +16,7 @@
   <arg name="debug" default="false" doc="Activates the debug mode."/>
   <arg name="enable_ros_network" default="true"/>
   <arg name="gazebo_model_name" default="gripper" doc="The name to give to the model in Gazebo (after spawning it)."/>
-  <arg name="gazebo_world" default="worlds/empty.world" doc="The '.world' file to load in Gazebo."/>
+  <arg name="gazebo_world" default="worlds/grippertest.world" doc="The '.world' file to load in Gazebo."/>
   <arg name="gui" default="true" doc="If true, Gazebo UI is started. If false, only start Gazebo server."/>
   <arg name="gui_required" default="false"/>
   <arg name="output" default="screen"/>
