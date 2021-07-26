@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>robotiq_2f_85_gripper_articulated_gazebo</name>
+  <version>1.0.0</version>
+  <description>Launch files for spawning the Robotiq robotiq-2f-85-gripper articulated gripper</description>
+
+  <maintainer email="stephan.rediske@zal.aero">Stephan Rediske</maintainer>
+
+  <license>TODO</license>
+
+  <url type="website">https://www.zal.aero</url>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <exec_depend>gazebo_ros</exec_depend>
+  <exec_depend>robotiq_2f_85_gripper_visualization</exec_depend>
+
+</package>
