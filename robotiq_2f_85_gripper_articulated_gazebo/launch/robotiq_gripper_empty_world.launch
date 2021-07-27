@@ -1,14 +1,14 @@
 <?xml version="1.0"?>
 <launch>
 
-  <!-- startup simulated world --> 
+  <!-- startup simulated world -->
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
     <arg name="world_name" default="worlds/empty.world"/>
     <arg name="paused" value="false"/>
   </include>
 
   <!-- upload gripper urdf to robot_description -->
-  <include file="$(find robotiq_3f_gripper_visualization)/launch/robotiq_gripper_upload.launch">
+  <include file="$(find robotiq_2f_85_gripper_visualization)/launch/robotiq_gripper_upload.launch">
   </include>
 
   <!-- Start the publisher for the left hand (the only hand) --> <!-- added "robot_" to type -->
@@ -20,4 +20,4 @@
   <!-- spawn in gazebo -->
   <node name="spawn_gazebo_model" pkg="gazebo_ros" type="spawn_model" args="-urdf -param robot_description -model robot -z 0.1" respawn="false" output="screen" />
 
-</launch> 
+</launch>
