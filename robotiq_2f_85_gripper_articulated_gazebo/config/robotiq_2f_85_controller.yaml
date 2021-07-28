@@ -15,4 +15,4 @@ robotiq_2f_controller:
   state_publish_rate:  *loop_hz
   action_monitor_rate: 50
   gains: # Required because we're controlling an effort interface
-    finger_joint: {p: 10,  d: 0.5, i: 0, i_clamp: 0}
+    finger_joint: {p: 20,  d: 0.0, i: 0.1, i_clamp: 0.2}
