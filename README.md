@@ -3,14 +3,13 @@
 It is based on the original Robotiq repository and it has been updated to
 ROS Noetic.
 
-The (old) implemented models (only 3f so far) were extended so that they work
+The (old) implemented models were extended so that they work
 with newly implemented effort_controllers in Gazebo 11.
 
 #### TODO:
 
-* PID fine-tuning for 3f-gripper controller
-* Implement 2f-gripper model-extension for Gazebo 11
-* Implement 2f-gripper controller
+* Refactoring -> same structure as UR (gazebo) repo
+* Add and update controller files for real robot (+modbus etc.)
 
 #### Usage 3f-gripper:
 

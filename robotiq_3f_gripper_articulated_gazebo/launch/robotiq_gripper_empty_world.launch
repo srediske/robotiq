@@ -12,9 +12,9 @@
   </include>
 
   <!-- Start the publisher for the left hand (the only hand) --> <!-- added "robot_" to type -->
-  <node pkg="robot_state_publisher" type="robot_state_publisher" name="robotiq_hands_l_hand_robot_state_publisher">
+  <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">
     <param name="publish_frequency" type="double" value="50.0" />
-    <remap from="joint_states" to="/robotiq_hands/left_hand/joint_states" />
+    <param name="tf_prefix" value="" />
   </node>
 
   <!-- spawn in gazebo -->
