@@ -15,7 +15,7 @@ finger(i.e. finger_1, etc...).
 			<visual>
 				<origin xyz="0.020 0 0" rpy="0 0 0"/>
 				<geometry>
-                                        <mesh filename="package://robotiq_3f_gripper_visualization/meshes/robotiq-3f-gripper_articulated/visual/link_0.dae" />
+                                        <mesh filename="package://robotiq_3f_gripper_visualization/meshes/visual/link_0.dae" />
 				</geometry>
 				<material name="gray">
 					<color rgba="0.2 0.2 0.2 1"/>
@@ -24,7 +24,7 @@ finger(i.e. finger_1, etc...).
 			<collision>	
 				<origin xyz="0.020 0 0" rpy="0 0 0"/>
 				<geometry>
-                                        <mesh filename="package://robotiq_3f_gripper_visualization/meshes/robotiq-3f-gripper_articulated/collision/link_0.STL" />
+                                        <mesh filename="package://robotiq_3f_gripper_visualization/meshes/collision/link_0.STL" />
 				</geometry>
 				<material name="yellow">
 					<color rgba="0 1 1 1"/>
@@ -40,14 +40,14 @@ finger(i.e. finger_1, etc...).
 			<visual>
 				<origin xyz="0.050 -.028 0" rpy="0 0 -0.52"/>
 				<geometry>
-                                        <mesh filename="package://robotiq_3f_gripper_visualization/meshes/robotiq-3f-gripper_articulated/visual/link_1.dae" />
+                                        <mesh filename="package://robotiq_3f_gripper_visualization/meshes/visual/link_1.dae" />
 				</geometry>
 				<material name="gray"/>
 			</visual>
 			<collision>
 				<origin xyz="0.050 -.028 0" rpy="0 0 -0.52"/>
 				<geometry>
-                                        <mesh filename="package://robotiq_3f_gripper_visualization/meshes/robotiq-3f-gripper_articulated/collision/link_1.STL" />
+                                        <mesh filename="package://robotiq_3f_gripper_visualization/meshes/collision/link_1.STL" />
 				</geometry>
 				<material name="yellow"/>
 			</collision>
@@ -66,14 +66,14 @@ finger(i.e. finger_1, etc...).
 			<visual>
 				<origin xyz="0.039 0 0.0075" rpy="0 0 0"/>
 				<geometry>
-                                        <mesh filename="package://robotiq_3f_gripper_visualization/meshes/robotiq-3f-gripper_articulated/visual/link_2.dae" />
+                                        <mesh filename="package://robotiq_3f_gripper_visualization/meshes/visual/link_2.dae" />
 				</geometry>
 				<material name="gray"/>
 			</visual>
 			<collision>
 				<origin xyz="0.039 0 0.0075" rpy="0 0 0"/>
 				<geometry>
-                                        <mesh filename="package://robotiq_3f_gripper_visualization/meshes/robotiq-3f-gripper_articulated/collision/link_2.STL" />
+                                        <mesh filename="package://robotiq_3f_gripper_visualization/meshes/collision/link_2.STL" />
 				</geometry>
 				<material name="yellow"/>
 			</collision>
@@ -87,14 +87,14 @@ finger(i.e. finger_1, etc...).
 			<visual>
 				<origin xyz="0 0 0" rpy="0 0 0.52"/>
 				<geometry>
-                                        <mesh filename="package://robotiq_3f_gripper_visualization/meshes/robotiq-3f-gripper_articulated/visual/link_3.dae" />
+                                        <mesh filename="package://robotiq_3f_gripper_visualization/meshes/visual/link_3.dae" />
 				</geometry>
 				<material name="gray"/>
 			</visual>
 			<collision>
 				<origin xyz="0 0 0" rpy="0 0 0.52"/>
 				<geometry>
-                                        <mesh filename="package://robotiq_3f_gripper_visualization/meshes/robotiq-3f-gripper_articulated/collision/link_3.STL" />
+                                        <mesh filename="package://robotiq_3f_gripper_visualization/meshes/collision/link_3.STL" />
 				</geometry>
 				<material name="yellow"/>
 			</collision>
