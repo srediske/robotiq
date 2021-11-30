@@ -6,7 +6,6 @@
       URDF description for the Robotiq 3-Finger Adaptive Robot Gripper.
   </description>
 
-  <author>Nicolas Lauzier (Robotiq inc.) | preparatory work</author>
   <author>Stephan Rediske</author>
   <maintainer email="stephan.rediske@zal.aero">Stephan Rediske</maintainer>
 
