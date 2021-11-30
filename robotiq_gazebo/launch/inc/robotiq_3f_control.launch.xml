@@ -12,7 +12,8 @@
 
   <!-- Controller parameters -->
   <arg name="controller_config_file" doc="Config file used for defining the ROS-Control controllers."/>
-  <arg name="controllers" default="robotiq_joint_state_controller robotiq_3f_controller"/>
+  <arg name="controllers" default="robotiq_joint_state_controller robotiq_eff_joint_traj_controller"/>
+  <arg name="stopped_controllers" default=""/>
 
   <!-- Gazebo parameters -->
   <arg name="debug" default="false" doc="Activates the debug mode."/>
@@ -41,6 +42,7 @@
   <arg name="spawn_R" default="0.0" doc="roll in radians."/>
   <arg name="spawn_P" default="0.0" doc="pitch in radians."/>
   <arg name="spawn_Y" default="0.0" doc="yaw in radians."/>
+
   <!-- Robotiq-3f: Initial joint positions in radians -->
   <arg name="spawn_f1_j1" default="0.0"/>
   <arg name="spawn_f1_j2" default="0.0"/>
@@ -111,5 +113,9 @@
   <!-- Load and start the controllers listed in the 'controllers' arg. -->
   <node name="ros_control_controller_spawner" pkg="controller_manager" type="spawner"
     args="$(arg controllers)" output="screen" respawn="false" />
+
+  <!-- Load other controllers, but do not start them. -->
+  <node name="ros_control_stopped_spawner" pkg="controller_manager" type="spawner"
+    args="--stopped $(arg stopped_controllers)" output="screen" respawn="false" />
 
 </launch>
