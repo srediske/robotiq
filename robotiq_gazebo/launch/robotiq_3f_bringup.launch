@@ -1,12 +1,21 @@
 <?xml version="1.0"?>
 <launch>
 
-  <!--Robot description and related parameter files -->
-  <arg name="robot_description_file" default="$(find robotiq_3f_gripper_visualization)/launch/fixed_robotiq_gripper_upload.launch" doc="Launch file which populates the 'robot_description' parameter."/>
+  <!-- Robot description and related parameter files -->
+  <arg name="robot_description_file" default="$(dirname)/inc/load_robotiq_3f.launch.xml" doc="Launch file which populates the 'robot_description' parameter."/>
+  <arg name="joint_limit_params" default="$(find robotiq_3f_description)/config/joint_limits.yaml" doc="YAML file containing the joint limit values"/>
+  <arg name="physical_params" default="$(find robotiq_3f_description)/config/physical_parameters.yaml" doc="YAML file containing the phycical parameters of the robot"/>
+  <arg name="visual_params" default="$(find robotiq_3f_description)/config/visual_parameters.yaml" doc="YAML file containing the visual model of the robot"/>
 
   <!-- Controller configuration -->
-  <arg name="controller_config_file" default="$(find robotiq_3f_gripper_articulated_gazebo)/config/robotiq_3f_controller.yaml" doc="Config file used for defining the ROS-Control controllers."/>
-  <arg name="controllers" default="robotiq_joint_state_controller robotiq_3f_controller" doc="Controllers that are activated by default."/>
+  <arg name="use_effort_controller" default="true" doc="If 'true' starts with effort controller, otherwise with position controller."/>
+  <arg name="transmission_hw_interface" default="hardware_interface/EffortJointInterface" if="$(arg use_effort_controller)"/>
+  <arg name="transmission_hw_interface" default="hardware_interface/PositionJointInterface" unless="$(arg use_effort_controller)"/>
+  <arg name="controller_config_file" default="$(find robotiq_gazebo)/config/3f_controllers.yaml" doc="Config file used for defining the ROS-Control controllers."/>
+  <arg name="controllers" default="robotiq_joint_state_controller robotiq_eff_joint_traj_controller" if="$(arg use_effort_controller)" doc="Controllers that are activated by default."/>
+  <arg name="stopped_controllers" default="robotiq_joint_group_eff_controller" if="$(arg use_effort_controller)" doc="Controllers that are initally loaded, but not started."/>
+  <arg name="controllers" default="robotiq_joint_state_controller robotiq_pos_joint_traj_controller" unless="$(arg use_effort_controller)" doc="Controllers that are activated by default."/>
+  <arg name="stopped_controllers" default="robotiq_joint_group_pos_controller" unless="$(arg use_effort_controller)" doc="Controllers that are initally loaded, but not started."/>
 
   <!-- robot_state_publisher configuration -->
   <arg name="tf_prefix" default="" doc="tf_prefix used for the robot."/>
@@ -16,7 +25,7 @@
   <arg name="debug" default="false" doc="Activates the debug mode."/>
   <arg name="enable_ros_network" default="true"/>
   <arg name="gazebo_model_name" default="gripper" doc="The name to give to the model in Gazebo (after spawning it)."/>
-  <arg name="gazebo_world" default="worlds/grippertest.world" doc="The '.world' file to load in Gazebo."/>
+  <arg name="gazebo_world" default="worlds/empty.world" doc="The '.world' file to load in Gazebo."/>
   <arg name="gui" default="true" doc="If true, Gazebo UI is started. If false, only start Gazebo server."/>
   <arg name="gui_required" default="false"/>
   <arg name="output" default="screen"/>
@@ -39,7 +48,8 @@
   <arg name="spawn_R" default="0.0" doc="roll in radians."/>
   <arg name="spawn_P" default="0.0" doc="pitch in radians."/>
   <arg name="spawn_Y" default="0.0" doc="yaw in radians."/>
-  <!-- Robotiq-3f: Initial joint positions in radians -->
+
+  <!-- Initial joint positions in radians -->
   <arg name="spawn_f1_j1" default="0.0"/>
   <arg name="spawn_f1_j2" default="0.0"/>
   <arg name="spawn_f1_j3" default="0.0"/>
@@ -54,6 +64,10 @@
 
   <!-- Load urdf on the parameter server -->
   <include file="$(arg robot_description_file)">
+    <arg name="joint_limit_params" value="$(arg joint_limit_params)"/>
+    <arg name="physical_params" value="$(arg physical_params)"/>
+    <arg name="visual_params" value="$(arg visual_params)"/>
+    <arg name="transmission_hw_interface" value="$(arg transmission_hw_interface)"/>
   </include>
 
   <!-- Robot state publisher -->
@@ -63,7 +77,7 @@
   </node>
 
   <!-- Start the 'driver' (ie: Gazebo in this case) and the controller for 3f-Gripper -->
-  <include file="$(dirname)/inc/3f_control.launch.xml">
+  <include file="$(dirname)/inc/robotiq_3f_control.launch.xml">
     <arg name="controller_config_file" value="$(arg controller_config_file)"/>
     <arg name="controllers" value="$(arg controllers)"/>
     <arg name="debug" value="$(arg debug)"/>
@@ -95,6 +109,7 @@
     <arg name="spawn_mid_j3" value="$(arg spawn_mid_j3)"/>
     <arg name="spawn_palm_f1" value="$(arg spawn_palm_f1)"/>
     <arg name="spawn_palm_f2" value="$(arg spawn_palm_f2)"/>
+    <arg name="stopped_controllers" value="$(arg stopped_controllers)"/>
     <arg name="use_clock_frequency" value="$(arg use_clock_frequency)"/>
     <arg name="use_sim_time" value="$(arg use_sim_time)"/>
     <arg name="verbose" value="$(arg verbose)"/>
