@@ -1,5 +1,23 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://wiki.ros.org/xacro">
+
+  <xacro:macro name="transmission" params="
+    joint_name
+    hw_interface
+    mechanical_reduction:=1"
+  >
+    <!-- Transmission macro -->
+    <transmission name="${joint_name}_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="${joint_name}">
+        <hardwareInterface>${hw_interface}</hardwareInterface>
+      </joint>
+      <actuator name="${joint_name}_motor">
+        <mechanicalReduction>${mechanical_reduction}</mechanicalReduction>
+      </actuator>
+    </transmission>
+  </xacro:macro>
+
   <xacro:macro name="read_model_data" params="joint_limits_parameters_file physical_parameters_file visual_parameters_file">
 
     <!-- Read .yaml files from disk, load content into properties -->
