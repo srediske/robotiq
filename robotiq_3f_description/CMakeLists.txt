@@ -1,15 +1,15 @@
 cmake_minimum_required(VERSION 3.0.2)
 
-project(robotiq_3f_gripper_visualization)
+project(robotiq_3f_description)
 
-find_package(catkin REQUIRED urdf)
+find_package(catkin REQUIRED)
 
 catkin_package()
 
 install(
   DIRECTORY
-    cfg
+    config
     meshes
-    launch
+    urdf
   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
 )
