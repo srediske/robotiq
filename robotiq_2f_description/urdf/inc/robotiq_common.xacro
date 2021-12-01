@@ -1,0 +1,140 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://wiki.ros.org/xacro">
+
+  <xacro:macro name="transmission" params="
+    joint_name
+    hw_interface
+    mechanical_reduction:=1"
+  >
+    <!-- Transmission macro -->
+    <transmission name="${joint_name}_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="${joint_name}">
+        <hardwareInterface>${hw_interface}</hardwareInterface>
+      </joint>
+      <actuator name="${joint_name}_motor">
+        <mechanicalReduction>${mechanical_reduction}</mechanicalReduction>
+      </actuator>
+    </transmission>
+  </xacro:macro>
+
+  <xacro:macro name="read_model_data" params="joint_limits_parameters_file physical_parameters_file visual_parameters_file">
+
+    <!-- Read .yaml files from disk, load content into properties -->
+    <xacro:property name="config_joint_limit_parameters" value="${xacro.load_yaml(joint_limits_parameters_file)}"/>
+    <xacro:property name="config_physical_parameters" value="${xacro.load_yaml(physical_parameters_file)}"/>
+    <xacro:property name="config_visual_parameters" value="${xacro.load_yaml(visual_parameters_file)}"/>
+
+    <!-- Extract subsections from yaml dictionaries -->
+    <xacro:property name="sec_limits" value="${config_joint_limit_parameters['joint_limits']}"/>
+    <xacro:property name="sec_inertia_parameters" value="${config_physical_parameters['inertia_parameters']}" />
+    <xacro:property name="sec_mesh_files" value="${config_visual_parameters['mesh_files']}" />
+
+    <!-- Inertia parameters -->
+    <!-- Origin parameters -->
+    <xacro:property name="palm_origin_xyz" value="${sec_inertia_parameters['palm']['origin']['xyz']}" scope="parent"/>
+    <xacro:property name="palm_origin_rpy" value="${sec_inertia_parameters['palm']['origin']['rpy']}" scope="parent"/>
+    <xacro:property name="bar_link_0_origin_xyz" value="${sec_inertia_parameters['bar_link_0']['origin']['xyz']}" scope="parent"/>
+    <xacro:property name="bar_link_0_origin_rpy" value="${sec_inertia_parameters['bar_link_0']['origin']['rpy']}" scope="parent"/>
+    <xacro:property name="bar_link_1_origin_xyz" value="${sec_inertia_parameters['bar_link_1']['origin']['xyz']}" scope="parent"/>
+    <xacro:property name="bar_link_1_origin_rpy" value="${sec_inertia_parameters['bar_link_1']['origin']['rpy']}" scope="parent"/>
+    <xacro:property name="proximal_phalanx_origin_xyz" value="${sec_inertia_parameters['proximal_phalanx']['origin']['xyz']}" scope="parent"/>
+    <xacro:property name="proximal_phalanx_origin_rpy" value="${sec_inertia_parameters['proximal_phalanx']['origin']['rpy']}" scope="parent"/>
+    <xacro:property name="fingertip_origin_xyz" value="${sec_inertia_parameters['fingertip']['origin']['xyz']}" scope="parent"/>
+    <xacro:property name="fingertip_origin_rpy" value="${sec_inertia_parameters['fingertip']['origin']['rpy']}" scope="parent"/>
+    <xacro:property name="finger_pad_origin_xyz" value="${sec_inertia_parameters['finger_pad']['origin']['xyz']}" scope="parent"/>
+    <xacro:property name="finger_pad_origin_rpy" value="${sec_inertia_parameters['finger_pad']['origin']['rpy']}" scope="parent"/>
+
+    <!-- Mass -->
+    <xacro:property name="palm_mass" value="${sec_inertia_parameters['palm']['mass']}" scope="parent"/>
+    <xacro:property name="bar_link_0_mass" value="${sec_inertia_parameters['bar_link_0']['mass']}" scope="parent"/>
+    <xacro:property name="bar_link_1_mass" value="${sec_inertia_parameters['bar_link_1']['mass']}" scope="parent"/>
+    <xacro:property name="proximal_phalanx_mass" value="${sec_inertia_parameters['proximal_phalanx']['mass']}" scope="parent"/>
+    <xacro:property name="fingertip_mass" value="${sec_inertia_parameters['fingertip']['mass']}" scope="parent"/>
+    <xacro:property name="finger_pad_mass" value="${sec_inertia_parameters['finger_pad']['mass']}" scope="parent"/>
+
+    <!-- Inertia parameters for links -->
+    <xacro:property name="palm_ixx" value="${sec_inertia_parameters['palm']['inertia']['ixx']}" scope="parent"/>
+    <xacro:property name="palm_ixy" value="${sec_inertia_parameters['palm']['inertia']['ixy']}" scope="parent"/>
+    <xacro:property name="palm_ixz" value="${sec_inertia_parameters['palm']['inertia']['ixz']}" scope="parent"/>
+    <xacro:property name="palm_iyy" value="${sec_inertia_parameters['palm']['inertia']['iyy']}" scope="parent"/>
+    <xacro:property name="palm_iyz" value="${sec_inertia_parameters['palm']['inertia']['iyz']}" scope="parent"/>
+    <xacro:property name="palm_izz" value="${sec_inertia_parameters['palm']['inertia']['izz']}" scope="parent"/>
+    <xacro:property name="bar_link_0_ixx" value="${sec_inertia_parameters['bar_link_0']['inertia']['ixx']}" scope="parent"/>
+    <xacro:property name="bar_link_0_ixy" value="${sec_inertia_parameters['bar_link_0']['inertia']['ixy']}" scope="parent"/>
+    <xacro:property name="bar_link_0_ixz" value="${sec_inertia_parameters['bar_link_0']['inertia']['ixz']}" scope="parent"/>
+    <xacro:property name="bar_link_0_iyy" value="${sec_inertia_parameters['bar_link_0']['inertia']['iyy']}" scope="parent"/>
+    <xacro:property name="bar_link_0_iyz" value="${sec_inertia_parameters['bar_link_0']['inertia']['iyz']}" scope="parent"/>
+    <xacro:property name="bar_link_0_izz" value="${sec_inertia_parameters['bar_link_0']['inertia']['izz']}" scope="parent"/>
+    <xacro:property name="bar_link_1_ixx" value="${sec_inertia_parameters['bar_link_1']['inertia']['ixx']}" scope="parent"/>
+    <xacro:property name="bar_link_1_ixy" value="${sec_inertia_parameters['bar_link_1']['inertia']['ixy']}" scope="parent"/>
+    <xacro:property name="bar_link_1_ixz" value="${sec_inertia_parameters['bar_link_1']['inertia']['ixz']}" scope="parent"/>
+    <xacro:property name="bar_link_1_iyy" value="${sec_inertia_parameters['bar_link_1']['inertia']['iyy']}" scope="parent"/>
+    <xacro:property name="bar_link_1_iyz" value="${sec_inertia_parameters['bar_link_1']['inertia']['iyz']}" scope="parent"/>
+    <xacro:property name="bar_link_1_izz" value="${sec_inertia_parameters['bar_link_1']['inertia']['izz']}" scope="parent"/>
+    <xacro:property name="proximal_phalanx_ixx" value="${sec_inertia_parameters['proximal_phalanx']['inertia']['ixx']}" scope="parent"/>
+    <xacro:property name="proximal_phalanx_ixy" value="${sec_inertia_parameters['proximal_phalanx']['inertia']['ixy']}" scope="parent"/>
+    <xacro:property name="proximal_phalanx_ixz" value="${sec_inertia_parameters['proximal_phalanx']['inertia']['ixz']}" scope="parent"/>
+    <xacro:property name="proximal_phalanx_iyy" value="${sec_inertia_parameters['proximal_phalanx']['inertia']['iyy']}" scope="parent"/>
+    <xacro:property name="proximal_phalanx_iyz" value="${sec_inertia_parameters['proximal_phalanx']['inertia']['iyz']}" scope="parent"/>
+    <xacro:property name="proximal_phalanx_izz" value="${sec_inertia_parameters['proximal_phalanx']['inertia']['izz']}" scope="parent"/>
+    <xacro:property name="fingertip_ixx" value="${sec_inertia_parameters['fingertip']['inertia']['ixx']}" scope="parent"/>
+    <xacro:property name="fingertip_ixy" value="${sec_inertia_parameters['fingertip']['inertia']['ixy']}" scope="parent"/>
+    <xacro:property name="fingertip_ixz" value="${sec_inertia_parameters['fingertip']['inertia']['ixz']}" scope="parent"/>
+    <xacro:property name="fingertip_iyy" value="${sec_inertia_parameters['fingertip']['inertia']['iyy']}" scope="parent"/>
+    <xacro:property name="fingertip_iyz" value="${sec_inertia_parameters['fingertip']['inertia']['iyz']}" scope="parent"/>
+    <xacro:property name="fingertip_izz" value="${sec_inertia_parameters['fingertip']['inertia']['izz']}" scope="parent"/>
+    <xacro:property name="finger_pad_ixx" value="${sec_inertia_parameters['finger_pad']['inertia']['ixx']}" scope="parent"/>
+    <xacro:property name="finger_pad_ixy" value="${sec_inertia_parameters['finger_pad']['inertia']['ixy']}" scope="parent"/>
+    <xacro:property name="finger_pad_ixz" value="${sec_inertia_parameters['finger_pad']['inertia']['ixz']}" scope="parent"/>
+    <xacro:property name="finger_pad_iyy" value="${sec_inertia_parameters['finger_pad']['inertia']['iyy']}" scope="parent"/>
+    <xacro:property name="finger_pad_iyz" value="${sec_inertia_parameters['finger_pad']['inertia']['iyz']}" scope="parent"/>
+    <xacro:property name="finger_pad_izz" value="${sec_inertia_parameters['finger_pad']['inertia']['izz']}" scope="parent"/>
+
+    <!-- Joint limit parameters -->
+    <xacro:property name="palm_bar_joint_lower_limit" value="${sec_limits['palm_bar']['min_position']}" scope="parent"/>
+    <xacro:property name="palm_bar_joint_upper_limit" value="${sec_limits['palm_bar']['max_position']}" scope="parent"/>
+    <xacro:property name="palm_bar_joint_velocity_limit" value="${sec_limits['palm_bar']['max_velocity']}" scope="parent"/>
+    <xacro:property name="palm_bar_joint_effort_limit" value="${sec_limits['palm_bar']['max_effort']}" scope="parent"/>
+    <xacro:property name="palm_proximal_phalanx_joint_lower_limit" value="${sec_limits['palm_proximal_phalanx']['min_position']}" scope="parent"/>
+    <xacro:property name="palm_proximal_phalanx_joint_upper_limit" value="${sec_limits['palm_proximal_phalanx']['max_position']}" scope="parent"/>
+    <xacro:property name="palm_proximal_phalanx_joint_velocity_limit" value="${sec_limits['palm_proximal_phalanx']['max_velocity']}" scope="parent"/>
+    <xacro:property name="palm_proximal_phalanx_joint_effort_limit" value="${sec_limits['palm_proximal_phalanx']['max_effort']}" scope="parent"/>
+    <xacro:property name="bar_fingertip_joint_lower_limit" value="${sec_limits['bar_fingertip']['min_position']}" scope="parent"/>
+    <xacro:property name="bar_fingertip_joint_upper_limit" value="${sec_limits['bar_fingertip']['max_position']}" scope="parent"/>
+    <xacro:property name="bar_fingertip_joint_velocity_limit" value="${sec_limits['bar_fingertip']['max_velocity']}" scope="parent"/>
+    <xacro:property name="bar_fingertip_joint_effort_limit" value="${sec_limits['bar_fingertip']['max_effort']}" scope="parent"/>
+
+    <!-- Mesh files -->
+    <xacro:property name="palm_mesh" value="${sec_mesh_files['palm']}"/>
+    <xacro:property name="palm_visual_mesh" value="${palm_mesh['visual']['mesh']}" scope="parent"/>
+    <xacro:property name="palm_visual_material_name" value="${palm_mesh['visual']['material']['name']}" scope="parent"/>
+    <xacro:property name="palm_visual_material_color" value="${palm_mesh['visual']['material']['color']}" scope="parent"/>
+    <xacro:property name="palm_collision_mesh" value="${palm_mesh['collision']['mesh']}" scope="parent"/>
+    <xacro:property name="bar_link_0_mesh" value="${sec_mesh_files['bar_link_0']}"/>
+    <xacro:property name="bar_link_0_visual_mesh" value="${bar_link_0_mesh['visual']['mesh']}" scope="parent"/>
+    <xacro:property name="bar_link_0_visual_material_name" value="${bar_link_0_mesh['visual']['material']['name']}" scope="parent"/>
+    <xacro:property name="bar_link_0_visual_material_color" value="${bar_link_0_mesh['visual']['material']['color']}" scope="parent"/>
+    <xacro:property name="bar_link_0_collision_mesh" value="${bar_link_0_mesh['collision']['mesh']}" scope="parent"/>
+    <xacro:property name="bar_link_1_mesh" value="${sec_mesh_files['bar_link_1']}"/>
+    <xacro:property name="bar_link_1_visual_mesh" value="${bar_link_1_mesh['visual']['mesh']}" scope="parent"/>
+    <xacro:property name="bar_link_1_visual_material_name" value="${bar_link_1_mesh['visual']['material']['name']}" scope="parent"/>
+    <xacro:property name="bar_link_1_visual_material_color" value="${bar_link_1_mesh['visual']['material']['color']}" scope="parent"/>
+    <xacro:property name="bar_link_1_collision_mesh" value="${bar_link_1_mesh['collision']['mesh']}" scope="parent"/>
+    <xacro:property name="proximal_phalanx_mesh" value="${sec_mesh_files['proximal_phalanx']}"/>
+    <xacro:property name="proximal_phalanx_visual_mesh" value="${proximal_phalanx_mesh['visual']['mesh']}" scope="parent"/>
+    <xacro:property name="proximal_phalanx_visual_material_name" value="${proximal_phalanx_mesh['visual']['material']['name']}" scope="parent"/>
+    <xacro:property name="proximal_phalanx_visual_material_color" value="${proximal_phalanx_mesh['visual']['material']['color']}" scope="parent"/>
+    <xacro:property name="proximal_phalanx_collision_mesh" value="${proximal_phalanx_mesh['collision']['mesh']}" scope="parent"/>
+    <xacro:property name="fingertip_mesh" value="${sec_mesh_files['fingertip']}"/>
+    <xacro:property name="fingertip_visual_mesh" value="${fingertip_mesh['visual']['mesh']}" scope="parent"/>
+    <xacro:property name="fingertip_visual_material_name" value="${fingertip_mesh['visual']['material']['name']}" scope="parent"/>
+    <xacro:property name="fingertip_visual_material_color" value="${fingertip_mesh['visual']['material']['color']}" scope="parent"/>
+    <xacro:property name="fingertip_collision_mesh" value="${fingertip_mesh['collision']['mesh']}" scope="parent"/>
+    <xacro:property name="finger_pad_mesh" value="${sec_mesh_files['finger_pad']}"/>
+    <xacro:property name="finger_pad_visual_mesh" value="${finger_pad_mesh['visual']['mesh']}" scope="parent"/>
+    <xacro:property name="finger_pad_visual_material_name" value="${finger_pad_mesh['visual']['material']['name']}" scope="parent"/>
+    <xacro:property name="finger_pad_visual_material_color" value="${finger_pad_mesh['visual']['material']['color']}" scope="parent"/>
+    <xacro:property name="finger_pad_collision_mesh" value="${finger_pad_mesh['collision']['mesh']}" scope="parent"/>
+  </xacro:macro>
+</robot>
