@@ -8,7 +8,7 @@
   <arg name="visual_params" default="$(find robotiq_2f_description)/config/2f-85/visual_parameters.yaml" doc="YAML file containing the visual model of the robot"/>
 
   <!-- Controller configuration -->
-  <arg name="use_effort_controller" default="false" doc="If 'true' starts with effort controller, otherwise with position controller."/>
+  <arg name="use_effort_controller" default="true" doc="If 'true' starts with effort controller, otherwise with position controller."/>
   <arg name="transmission_hw_interface" default="hardware_interface/EffortJointInterface" if="$(arg use_effort_controller)"/>
   <arg name="transmission_hw_interface" default="hardware_interface/PositionJointInterface" unless="$(arg use_effort_controller)"/>
   <arg name="controller_config_file" default="$(find robotiq_gazebo)/config/2f85_controllers.yaml" doc="Config file used for defining the ROS-Control controllers."/>
