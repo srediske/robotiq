@@ -132,9 +132,9 @@
     <xacro:property name="fingertip_visual_material_color" value="${fingertip_mesh['visual']['material']['color']}" scope="parent"/>
     <xacro:property name="fingertip_collision_mesh" value="${fingertip_mesh['collision']['mesh']}" scope="parent"/>
     <xacro:property name="finger_pad_mesh" value="${sec_mesh_files['finger_pad']}"/>
-    <xacro:property name="finger_pad_visual_mesh" value="${finger_pad_mesh['visual']['mesh']}" scope="parent"/>
+    <xacro:property name="finger_pad_visual_box_size" value="${finger_pad_mesh['visual']['box_size']}" scope="parent"/>
     <xacro:property name="finger_pad_visual_material_name" value="${finger_pad_mesh['visual']['material']['name']}" scope="parent"/>
     <xacro:property name="finger_pad_visual_material_color" value="${finger_pad_mesh['visual']['material']['color']}" scope="parent"/>
-    <xacro:property name="finger_pad_collision_mesh" value="${finger_pad_mesh['collision']['mesh']}" scope="parent"/>
+    <xacro:property name="finger_pad_collision_box_size" value="${finger_pad_mesh['collision']['box_size']}" scope="parent"/>
   </xacro:macro>
 </robot>

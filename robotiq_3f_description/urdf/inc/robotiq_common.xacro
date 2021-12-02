@@ -27,7 +27,6 @@
 
     <!-- Extract subsections from yaml dictionaries -->
     <xacro:property name="sec_limits" value="${config_joint_limit_parameters['joint_limits']}"/>
-    <!--<xacro:property name="sec_dh_parameters" value="${config_physical_parameters['dh_parameters']}"/>-->
     <xacro:property name="sec_inertia_parameters" value="${config_physical_parameters['inertia_parameters']}" />
     <xacro:property name="sec_mesh_files" value="${config_visual_parameters['mesh_files']}" />
 
