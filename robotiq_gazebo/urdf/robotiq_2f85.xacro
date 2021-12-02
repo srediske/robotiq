@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="robotiq_2f85_robot">
+  <!-- Import main macro. -->
+  <xacro:include filename="inc/robotiq_2f85_macro.xacro"/>
+
+  <!--Declare arguments. -->
+  <xacro:arg name="prefix" default=""/>
+  <xacro:arg name="joint_limit_params" default="$(find robotiq_2f_description)/config/2f-85/joint_limits.yaml"/>
+  <xacro:arg name="physical_params" default="$(find robotiq_2f_description)/config/2f-85/physical_parameters.yaml"/>
+  <xacro:arg name="visual_params" default="$(find robotiq_2f_description)/config/2f-85/visual_parameters.yaml"/>
+  <!--
+    legal values:
+      - hardware_interface/PositionJointInterface
+      - hardware_interface/VelocityJointInterface
+      - hardware_interface/EffortJointInterface
+
+    NOTE: this value must correspond to the controller configured in the
+          controller .yaml files in the 'config' directory.
+  -->
+  <xacro:arg name="transmission_hw_interface" default="hardware_interface/EffortJointInterface"/>
+
+  <!-- Instantiate the Gazebo robot and pass it all the required arguments. -->
+  <xacro:robotiq_2f85_gazebo
+    prefix="$(arg prefix)"
+    joint_limits_parameters_file="$(arg joint_limit_params)"
+    physical_parameters_file="$(arg physical_params)"
+    visual_parameters_file="$(arg visual_params)"
+    transmission_hw_interface="$(arg transmission_hw_interface)"
+  />
+
+  <!--
+    Inject Gazebo ROS Control plugin, which allows us to use ros_control
+    controllers to control the virtual robot hw.
+  -->
+  <gazebo>
+    <plugin name="ros_control" filename="libgazebo_ros_control.so">
+      <!--robotNamespace>/</robotNamespace-->
+      <!--robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType-->
+    </plugin>
+  </gazebo>
+
+  <!--
+    Attach the Gazebo model to Gazebo's world frame.
+
+    Note: If you want to integrate this end effector into a larger scene on a
+    robot arm or need to add other parts, DO NOT change this file or the
+    "world" link here. Instead, create a NEW xacro and decide if you need to
+    add a "world" link there.
+  -->
+  <link name="world"/>
+  <joint name="world_joint" type="fixed">
+    <parent link="world"/>
+    <child link="palm"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
+</robot>
