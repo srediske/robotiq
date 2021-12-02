@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:macro name="palm" params="
+    prefix
+    joint_limits_parameters_file
+    physical_parameters_file
+    visual_parameters_file"
+  >
+    <!-- Load configuration data from the provided .yaml files -->
+    <xacro:read_model_data
+      joint_limits_parameters_file="${joint_limits_parameters_file}"
+      physical_parameters_file="${physical_parameters_file}"
+      visual_parameters_file="${visual_parameters_file}"
+    />
+
+    <link name="${prefix}palm">
+      <visual>
+        <geometry>
+          <mesh filename="${palm_visual_mesh}" />
+        </geometry>
+        <material name="${palm_visual_material_name}">
+          <color rgba="${palm_visual_material_color}"/>
+        </material>
+      </visual>
+      <collision>
+        <geometry>
+          <mesh filename="${palm_collision_mesh}" />
+        </geometry>
+      </collision>
+      <inertial>
+        <origin xyz="${palm_origin_xyz}" rpy="${palm_origin_rpy}"/>
+        <mass value="${palm_mass}"/>
+        <inertia ixx="${palm_ixx}" ixy="${palm_ixy}" ixz="${palm_ixz}" iyy="${palm_iyy}" iyz="${palm_iyz}" izz="${palm_izz}" />
+      </inertial>
+    </link>
+
+    <!-- todo: move origin parameters to config files -->
+    <joint name="${prefix}finger_0_palm_bar" type="revolute">
+      <origin xyz="0.0 -0.0306011 0.054904" rpy="0.0 0.0 ${pi}"/>
+      <parent link="${prefix}palm"/>
+      <child link="${prefix}finger_0_bar_link_0"/>
+      <axis xyz="1 0 0"/>
+      <limit lower="${palm_bar_joint_lower_limit}"
+             upper="${palm_bar_joint_upper_limit}"
+             effort="${palm_bar_joint_effort_limit}"
+             velocity="${palm_bar_joint_velocity_limit}"/>
+    </joint>
+    <joint name="${prefix}finger_1_palm_bar_mimic" type="revolute">
+      <origin xyz="0.0 0.0306011 0.054904" rpy="0.0 0.0 0.0"/>
+      <parent link="${prefix}palm"/>
+      <child link="${prefix}finger_1_bar_link_0"/>
+      <axis xyz="1 0 0"/>
+      <limit lower="${palm_bar_joint_lower_limit}"
+             upper="${palm_bar_joint_upper_limit}"
+             effort="${palm_bar_joint_effort_limit}"
+             velocity="${palm_bar_joint_velocity_limit}"/>
+      <mimic joint="${prefix}finger_0_palm_bar" multiplier="1" offset="0" />
+    </joint>
+    <joint name="${prefix}finger_0_palm_proximal_phalanx" type="revolute">
+      <origin xyz="0.0 -0.0127 0.06142" rpy="0.0 0.0 ${pi}"/>
+      <parent link="palm"/>
+      <child link="${prefix}finger_0_proximal_phalanx"/>
+      <axis xyz="1 0 0" />
+      <limit lower="${palm_proximal_phalanx_joint_lower_limit}"
+             upper="${palm_proximal_phalanx_joint_upper_limit}"
+             effort="${palm_proximal_phalanx_joint_effort_limit}"
+             velocity="${palm_proximal_phalanx_joint_velocity_limit}"/>
+      <mimic joint="${prefix}finger_0_palm_bar" multiplier="1" offset="0" />
+    </joint>
+    <joint name="${prefix}finger_1_palm_proximal_phalanx" type="revolute">
+      <origin xyz="0.0 0.0127 0.06142" rpy="0.0 0.0 0.0"/>
+      <parent link="palm"/>
+      <child link="${prefix}finger_1_proximal_phalanx"/>
+      <axis xyz="1 0 0" />
+      <limit lower="${palm_proximal_phalanx_joint_lower_limit}"
+             upper="${palm_proximal_phalanx_joint_upper_limit}"
+             effort="${palm_proximal_phalanx_joint_effort_limit}"
+             velocity="${palm_proximal_phalanx_joint_velocity_limit}"/>
+      <mimic joint="${prefix}finger_0_palm_bar" multiplier="1" offset="0" />
+    </joint>
+  </xacro:macro>
+</robot>
