@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>robotiq</name>
+  <name>robotiq_3f_description</name>
   <version>1.0.0</version>
-  <description>ROS drivers for Robotiq Adaptive Grippers</description>
+  <description>
+      URDF description for the Robotiq 3-Finger Adaptive Robot Gripper.
+  </description>
 
-  <author>Nicolas Lauzier (Robotiq inc.) | preparatory work</author>
-  <author>Jean-Philippe Roberge (Robotiq inc.) | preparatory work</author>
   <author>Stephan Rediske</author>
   <maintainer email="stephan.rediske@zal.aero">Stephan Rediske</maintainer>
 
@@ -16,11 +16,8 @@
   <url type="internal_repository">https://gitlab.zal.aero/stephan.rediske/robotiq</url>
 
   <buildtool_depend>catkin</buildtool_depend>
-  <exec_depend>robotiq_2f_description</exec_depend>
-  <exec_depend>robotiq_3f_description</exec_depend>
-  <exec_depend>robotiq_gazebo</exec_depend>
 
-  <export>
-    <metapackage/>
-  </export>
+  <exec_depend>urdf</exec_depend>
+  <exec_depend>xacro</exec_depend>
+
 </package>

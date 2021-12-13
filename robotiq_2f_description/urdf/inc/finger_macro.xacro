@@ -1,0 +1,179 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+  <!--
+    Creates an articulated Robotiq 2f-Gripper finger with the passed in prefix.
+    The prefix typcially includes the hand prefix and an identifier for the
+    finger(i.e. finger_1, etc...).
+  -->
+  <xacro:macro name="finger_articulated" params="
+    prefix
+    joint_limits_parameters_file
+    physical_parameters_file
+    visual_parameters_file"
+  >
+    <!-- Load configuration data from the provided .yaml files -->
+    <xacro:read_model_data
+      joint_limits_parameters_file="${joint_limits_parameters_file}"
+      physical_parameters_file="${physical_parameters_file}"
+      visual_parameters_file="${visual_parameters_file}"
+    />
+
+    <link name="${prefix}bar_link_0">
+      <visual>
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+        <geometry>
+          <mesh filename="${bar_link_0_visual_mesh}" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="${bar_link_0_visual_material_name}">
+          <color rgba="${bar_link_0_visual_material_color}"/>
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+        <geometry>
+          <mesh filename="${bar_link_0_collision_mesh}" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <origin xyz="${bar_link_0_origin_xyz}" rpy="${bar_link_0_origin_rpy}"/>
+        <mass value="${bar_link_0_mass}"/>
+        <inertia ixx="${bar_link_0_ixx}"
+                 ixy="${bar_link_0_ixy}"
+                 ixz="${bar_link_0_ixz}"
+                 iyy="${bar_link_0_iyy}"
+                 iyz="${bar_link_0_iyz}"
+                 izz="${bar_link_0_izz}"/>
+      </inertial>
+    </link>
+    <link name="${prefix}bar_link_1">
+      <visual>
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+        <geometry>
+          <mesh filename="${bar_link_1_visual_mesh}" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="${bar_link_1_visual_material_name}">
+          <color rgba="${bar_link_1_visual_material_color}"/>
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+        <geometry>
+          <mesh filename="${bar_link_1_collision_mesh}" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <origin xyz="${bar_link_1_origin_xyz}" rpy="${bar_link_1_origin_rpy}"/>
+        <mass value="${bar_link_1_mass}"/>
+        <inertia ixx="${bar_link_1_ixx}"
+                 ixy="${bar_link_1_ixy}"
+                 ixz="${bar_link_1_ixz}"
+                 iyy="${bar_link_1_iyy}"
+                 iyz="${bar_link_1_iyz}"
+                 izz="${bar_link_1_izz}"/>
+      </inertial>
+    </link>
+    <link name="${prefix}proximal_phalanx">
+      <visual>
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+        <geometry>
+          <mesh filename="${proximal_phalanx_visual_mesh}" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="${proximal_phalanx_visual_material_name}">
+          <color rgba="${proximal_phalanx_visual_material_color}"/>
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+        <geometry>
+          <mesh filename="${proximal_phalanx_collision_mesh}" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <origin xyz="${proximal_phalanx_origin_xyz}" rpy="${proximal_phalanx_origin_rpy}"/>
+        <mass value="${proximal_phalanx_mass}"/>
+        <inertia ixx="${proximal_phalanx_ixx}"
+                 ixy="${proximal_phalanx_ixy}"
+                 ixz="${proximal_phalanx_ixz}"
+                 iyy="${proximal_phalanx_iyy}"
+                 iyz="${proximal_phalanx_iyz}"
+                 izz="${proximal_phalanx_izz}"/>
+      </inertial>
+    </link>
+    <link name="${prefix}fingertip">
+      <visual>
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+        <geometry>
+          <mesh filename="${fingertip_visual_mesh}" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="${fingertip_visual_material_name}">
+          <color rgba="${fingertip_visual_material_color}"/>
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+        <geometry>
+          <mesh filename="${fingertip_collision_mesh}" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <origin xyz="${fingertip_origin_xyz}" rpy="${fingertip_origin_rpy}"/>
+        <mass value="${fingertip_mass}"/>
+        <inertia ixx="${fingertip_ixx}"
+                 ixy="${fingertip_ixy}"
+                 ixz="${fingertip_ixz}"
+                 iyy="${fingertip_iyy}"
+                 iyz="${fingertip_iyz}"
+                 izz="${fingertip_izz}"/>
+      </inertial>
+    </link>
+    <link name="${prefix}finger_pad">
+      <visual>
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+        <geometry>
+          <box size="${finger_pad_visual_box_size}"/>
+        </geometry>
+        <material name="${finger_pad_visual_material_name}">
+          <color rgba="${finger_pad_visual_material_color}"/>
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+        <geometry>
+          <box size="${finger_pad_collision_box_size}"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <origin xyz="${finger_pad_origin_xyz}" rpy="${finger_pad_origin_rpy}"/>
+        <mass value="${finger_pad_mass}"/>
+        <inertia ixx="${finger_pad_ixx}"
+                 ixy="${finger_pad_ixy}"
+                 ixz="${finger_pad_ixz}"
+                 iyy="${finger_pad_iyy}"
+                 iyz="${finger_pad_iyz}"
+                 izz="${finger_pad_izz}"/>
+      </inertial>
+    </link>
+
+    <joint name="${prefix}bar_joint" type="fixed">
+      <origin xyz="${bar_joint_origin}" rpy="0.0 0.0 0.0"/>
+      <parent link="${prefix}bar_link_0"/>
+      <child link="${prefix}bar_link_1"/>
+    </joint>
+    <joint name="${prefix}bar_fingertip" type="revolute">
+      <origin xyz="${bar_fingertip_origin}" rpy="0.0 0.0 0.0"/>
+      <parent link="${prefix}bar_link_1"/>
+      <child link="${prefix}fingertip"/>
+      <axis xyz="1 0 0" />
+      <limit lower="${bar_fingertip_joint_lower_limit}"
+             upper="${bar_fingertip_joint_upper_limit}"
+             effort="${bar_fingertip_joint_effort_limit}"
+             velocity="${bar_fingertip_joint_velocity_limit}"/>
+      <mimic joint="finger_joint" multiplier="-1" offset="0"/>
+    </joint>
+    <joint name="${prefix}fingertip_pad" type="fixed">
+      <origin xyz="${fingertip_pad_origin}" rpy="0.0 0.0 0.0"/>
+      <parent link="${prefix}fingertip"/>
+      <child link="${prefix}finger_pad"/>
+    </joint>
+  </xacro:macro>
+</robot>
