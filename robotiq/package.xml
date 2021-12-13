@@ -16,8 +16,7 @@
   <url type="internal_repository">https://gitlab.zal.aero/stephan.rediske/robotiq</url>
 
   <buildtool_depend>catkin</buildtool_depend>
-  <exec_depend>robotiq_2f_85_gripper_visualization</exec_depend>
-  <exec_depend>robotiq_2f_85_gripper_articulated_gazebo</exec_depend>
+  <exec_depend>robotiq_2f_description</exec_depend>
   <exec_depend>robotiq_3f_description</exec_depend>
   <exec_depend>robotiq_gazebo</exec_depend>
 
