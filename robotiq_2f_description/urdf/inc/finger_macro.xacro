@@ -154,14 +154,13 @@
       </inertial>
     </link>
 
-    <!-- todo: move origin parameters to config files -->
     <joint name="${prefix}bar_joint" type="fixed">
-      <origin xyz="0.0 0.0315 -0.0041" rpy="0.0 0.0 0.0"/>
+      <origin xyz="${bar_joint_origin}" rpy="0.0 0.0 0.0"/>
       <parent link="${prefix}bar_link_0"/>
       <child link="${prefix}bar_link_1"/>
     </joint>
     <joint name="${prefix}bar_fingertip" type="revolute">
-      <origin xyz="0.0 0.0061 0.0471" rpy="0.0 0.0 0.0"/>
+      <origin xyz="${bar_fingertip_origin}" rpy="0.0 0.0 0.0"/>
       <parent link="${prefix}bar_link_1"/>
       <child link="${prefix}fingertip"/>
       <axis xyz="1 0 0" />
@@ -172,7 +171,7 @@
       <mimic joint="finger_joint" multiplier="-1" offset="0"/>
     </joint>
     <joint name="${prefix}fingertip_pad" type="fixed">
-      <origin xyz="0 -0.0220203446692936 0.03242" rpy="0 0 0"/>
+      <origin xyz="${fingertip_pad_origin}" rpy="0.0 0.0 0.0"/>
       <parent link="${prefix}fingertip"/>
       <child link="${prefix}finger_pad"/>
     </joint>

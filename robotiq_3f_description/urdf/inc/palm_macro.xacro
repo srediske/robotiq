@@ -38,7 +38,7 @@
       <parent link="${prefix}palm"/>
       <child link="${prefix}finger_1_link_0"/>
       <axis xyz="0 1 0"/>
-      <origin xyz="-0.0455 0.0214 0.036" rpy="0 3.1416 -1.57"/>
+      <origin xyz="${palm_finger_1_joint_origin_xyz}" rpy="${palm_finger_1_joint_origin_rpy}"/>
       <limit lower="${palm_finger_1_joint_lower_limit}"
              upper="${palm_finger_1_joint_upper_limit}"
              effort="${palm_finger_1_joint_effort_limit}"
@@ -48,7 +48,7 @@
       <parent link="${prefix}palm"/>
       <child link="${prefix}finger_2_link_0"/>
       <axis xyz="0 1 0"/>
-      <origin xyz="-0.0455 0.0214 -0.036" rpy="0 3.1416 -1.57"/>
+      <origin xyz="${palm_finger_2_joint_origin_xyz}" rpy="${palm_finger_2_joint_origin_rpy}"/>
       <limit lower="${palm_finger_2_joint_lower_limit}"
              upper="${palm_finger_2_joint_upper_limit}"
              effort="${palm_finger_2_joint_effort_limit}"
@@ -58,7 +58,7 @@
       <parent link="${prefix}palm"/>
       <child link="${prefix}finger_middle_link_0"/>
       <axis xyz="0 0 1"/>
-      <origin xyz="0.0455 0.0214 0" rpy="0 0 1.57"/>
+      <origin xyz="${palm_finger_middle_joint_origin_xyz}" rpy="${palm_finger_middle_joint_origin_rpy}"/>
     </joint>
   </xacro:macro>
 </robot>

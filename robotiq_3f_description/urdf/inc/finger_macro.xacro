@@ -20,7 +20,7 @@
 
     <link name="${prefix}link_0">
       <visual>
-        <origin xyz="0.020 0 0" rpy="0 0 0"/>
+        <origin xyz="${link_0_origin_xyz}" rpy="${link_0_origin_rpy}"/>
         <geometry>
           <mesh filename="${finger_link_0_visual_mesh}" />
         </geometry>
@@ -29,7 +29,7 @@
         </material>
       </visual>
       <collision>
-        <origin xyz="0.020 0 0" rpy="0 0 0"/>
+        <origin xyz="${link_0_origin_xyz}" rpy="${link_0_origin_rpy}"/>
         <geometry>
           <mesh filename="${finger_link_0_collision_mesh}" />
         </geometry>
@@ -47,7 +47,7 @@
     </link>
     <link name="${prefix}link_1">
       <visual>
-        <origin xyz="0.050 -.028 0" rpy="0 0 -0.52"/>
+        <origin xyz="${link_1_origin_xyz}" rpy="${link_1_origin_rpy}"/>
         <geometry>
           <mesh filename="${finger_link_1_visual_mesh}" />
         </geometry>
@@ -56,7 +56,7 @@
         </material>
       </visual>
       <collision>
-        <origin xyz="0.050 -.028 0" rpy="0 0 -0.52"/>
+        <origin xyz="${link_1_origin_xyz}" rpy="${link_1_origin_rpy}"/>
         <geometry>
           <mesh filename="${finger_link_1_collision_mesh}" />
         </geometry>
@@ -79,7 +79,7 @@
         correct, but it is suspect.
       -->
       <visual>
-        <origin xyz="0.039 0 0.0075" rpy="0 0 0"/>
+        <origin xyz="${link_2_origin_xyz}" rpy="${link_2_origin_rpy}"/>
         <geometry>
           <mesh filename="${finger_link_2_visual_mesh}" />
         </geometry>
@@ -88,7 +88,7 @@
         </material>
       </visual>
       <collision>
-        <origin xyz="0.039 0 0.0075" rpy="0 0 0"/>
+        <origin xyz="${link_2_origin_xyz}" rpy="${link_2_origin_rpy}"/>
         <geometry>
           <mesh filename="${finger_link_2_collision_mesh}" />
         </geometry>
@@ -106,7 +106,7 @@
     </link>
     <link name="${prefix}link_3">
       <visual>
-        <origin xyz="0 0 0" rpy="0 0 0.52"/>
+        <origin xyz="${link_3_origin_xyz}" rpy="${link_3_origin_rpy}"/>
         <geometry>
           <mesh filename="${finger_link_3_visual_mesh}" />
         </geometry>
@@ -115,7 +115,7 @@
         </material>
       </visual>
       <collision>
-        <origin xyz="0 0 0" rpy="0 0 0.52"/>
+        <origin xyz="${link_3_origin_xyz}" rpy="${link_3_origin_rpy}"/>
         <geometry>
           <mesh filename="${finger_link_3_collision_mesh}" />
         </geometry>
@@ -136,7 +136,7 @@
       <parent link="${prefix}link_0"/>
       <child link="${prefix}link_1"/>
       <axis xyz="0 0 1"/>
-      <origin xyz="0.020 0 0" rpy="0 0 0"/>
+      <origin xyz="${joint_1_origin_xyz}" rpy="${joint_1_origin_rpy}"/>
       <limit lower="${finger_joint_1_lower_limit}"
              upper="${finger_joint_1_upper_limit}"
              effort="${finger_joint_1_effort_limit}"
@@ -147,7 +147,7 @@
       <parent link="${prefix}link_1"/>
       <child link="${prefix}link_2"/>
       <axis xyz="0 0 1"/>
-      <origin xyz="0.050 -.028 0" rpy="0 0 -0.52"/>
+      <origin xyz="${joint_2_origin_xyz}" rpy="${joint_2_origin_rpy}"/>
       <limit lower="${finger_joint_2_lower_limit}"
              upper="${finger_joint_2_upper_limit}"
              effort="${finger_joint_2_effort_limit}"
@@ -158,7 +158,7 @@
       <parent link="${prefix}link_2"/>
       <child link="${prefix}link_3"/>
       <axis xyz="0 0 1"/>
-      <origin xyz="0.039 0 0" rpy="0 0 0"/>
+      <origin xyz="${joint_3_origin_xyz}" rpy="${joint_3_origin_rpy}"/>
       <limit lower="${finger_joint_3_lower_limit}"
              upper="${finger_joint_3_upper_limit}"
              effort="${finger_joint_3_effort_limit}"

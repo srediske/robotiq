@@ -27,6 +27,7 @@
 
     <!-- Extract subsections from yaml dictionaries -->
     <xacro:property name="sec_limits" value="${config_joint_limit_parameters['joint_limits']}"/>
+    <xacro:property name="sec_offsets" value="${config_physical_parameters['offsets']}"/>
     <xacro:property name="sec_inertia_parameters" value="${config_physical_parameters['inertia_parameters']}" />
     <xacro:property name="sec_mesh_files" value="${config_visual_parameters['mesh_files']}" />
 
@@ -136,5 +137,14 @@
     <xacro:property name="finger_pad_visual_material_name" value="${finger_pad_mesh['visual']['material']['name']}" scope="parent"/>
     <xacro:property name="finger_pad_visual_material_color" value="${finger_pad_mesh['visual']['material']['color']}" scope="parent"/>
     <xacro:property name="finger_pad_collision_box_size" value="${finger_pad_mesh['collision']['box_size']}" scope="parent"/>
+
+    <!-- Origin/Offset parameters -->
+    <xacro:property name="finger_joint_origin" value="${sec_offsets['finger_joint']['origin']['xyz']}" scope="parent"/>
+    <xacro:property name="finger_joint_mimic_origin" value="${sec_offsets['finger_joint_mimic']['origin']['xyz']}" scope="parent"/>
+    <xacro:property name="finger_0_palm_proximal_phalanx_origin" value="${sec_offsets['finger_0_palm_proximal_phalanx']['origin']['xyz']}" scope="parent"/>
+    <xacro:property name="finger_1_palm_proximal_phalanx_origin" value="${sec_offsets['finger_1_palm_proximal_phalanx']['origin']['xyz']}" scope="parent"/>
+    <xacro:property name="bar_joint_origin" value="${sec_offsets['bar_joint']['origin']['xyz']}" scope="parent"/>
+    <xacro:property name="bar_fingertip_origin" value="${sec_offsets['bar_fingertip']['origin']['xyz']}" scope="parent"/>
+    <xacro:property name="fingertip_pad_origin" value="${sec_offsets['fingertip_pad']['origin']['xyz']}" scope="parent"/>
   </xacro:macro>
 </robot>

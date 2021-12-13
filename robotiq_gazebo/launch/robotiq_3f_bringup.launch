@@ -12,9 +12,9 @@
   <arg name="transmission_hw_interface" default="hardware_interface/EffortJointInterface" if="$(arg use_effort_controller)"/>
   <arg name="transmission_hw_interface" default="hardware_interface/PositionJointInterface" unless="$(arg use_effort_controller)"/>
   <arg name="controller_config_file" default="$(find robotiq_gazebo)/config/3f_controllers.yaml" doc="Config file used for defining the ROS-Control controllers."/>
-  <arg name="controllers" default="robotiq_joint_state_controller robotiq_eff_joint_traj_controller" if="$(arg use_effort_controller)" doc="Controllers that are activated by default."/>
+  <arg name="controllers" default="joint_state_controller robotiq_eff_joint_traj_controller" if="$(arg use_effort_controller)" doc="Controllers that are activated by default."/>
   <arg name="stopped_controllers" default="robotiq_joint_group_eff_controller" if="$(arg use_effort_controller)" doc="Controllers that are initally loaded, but not started."/>
-  <arg name="controllers" default="robotiq_joint_state_controller robotiq_pos_joint_traj_controller" unless="$(arg use_effort_controller)" doc="Controllers that are activated by default."/>
+  <arg name="controllers" default="joint_state_controller robotiq_pos_joint_traj_controller" unless="$(arg use_effort_controller)" doc="Controllers that are activated by default."/>
   <arg name="stopped_controllers" default="robotiq_joint_group_pos_controller" unless="$(arg use_effort_controller)" doc="Controllers that are initally loaded, but not started."/>
 
   <!-- robot_state_publisher configuration -->

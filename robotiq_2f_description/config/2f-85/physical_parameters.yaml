@@ -78,3 +78,32 @@ inertia_parameters:
       iyy: 0.0
       iyz: 0.0
       izz: 0.0
+
+offsets:
+  finger_joint:
+    origin:
+      xyz: 0.0 -0.0306011 0.054904
+
+  finger_joint_mimic:
+    origin:
+      xyz: 0.0 0.0306011 0.054904
+
+  finger_0_palm_proximal_phalanx:
+    origin:
+      xyz: 0.0 -0.0127 0.06142
+
+  finger_1_palm_proximal_phalanx:
+    origin:
+      xyz: 0.0 0.0127 0.06142
+
+  bar_joint:
+    origin:
+      xyz: 0.0 0.0315 -0.0041
+
+  bar_fingertip:
+    origin:
+      xyz: 0.0 0.0061 0.0471
+
+  fingertip_pad:
+    origin:
+      xyz: 0.0 -0.0220203446692936 0.03242

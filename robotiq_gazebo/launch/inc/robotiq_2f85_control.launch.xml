@@ -12,7 +12,7 @@
 
   <!-- Controller parameters -->
   <arg name="controller_config_file" doc="Config file used for defining the ROS-Control controllers."/>
-  <arg name="controllers" default="robotiq_joint_state_controller robotiq_eff_joint_traj_controller"/>
+  <arg name="controllers" default="joint_state_controller robotiq_eff_joint_traj_controller"/>
   <arg name="stopped_controllers" default=""/>
 
   <!-- Gazebo parameters -->

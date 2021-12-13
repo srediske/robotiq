@@ -34,9 +34,8 @@
       </inertial>
     </link>
 
-    <!-- todo: move origin parameters to config files -->
     <joint name="${prefix}finger_joint" type="revolute">
-      <origin xyz="0.0 -0.0306011 0.054904" rpy="0.0 0.0 ${pi}"/>
+      <origin xyz="${finger_joint_origin}" rpy="0.0 0.0 ${pi}"/>
       <parent link="${prefix}palm"/>
       <child link="${prefix}finger_0_bar_link_0"/>
       <axis xyz="1 0 0"/>
@@ -46,7 +45,7 @@
              velocity="${finger_joint_velocity_limit}"/>
     </joint>
     <joint name="${prefix}finger_joint_mimic" type="revolute">
-      <origin xyz="0.0 0.0306011 0.054904" rpy="0.0 0.0 0.0"/>
+      <origin xyz="${finger_joint_mimic_origin}" rpy="0.0 0.0 0.0"/>
       <parent link="${prefix}palm"/>
       <child link="${prefix}finger_1_bar_link_0"/>
       <axis xyz="1 0 0"/>
@@ -57,7 +56,7 @@
       <mimic joint="${prefix}finger_joint" multiplier="1" offset="0" />
     </joint>
     <joint name="${prefix}finger_0_palm_proximal_phalanx" type="revolute">
-      <origin xyz="0.0 -0.0127 0.06142" rpy="0.0 0.0 ${pi}"/>
+      <origin xyz="${finger_0_palm_proximal_phalanx_origin}" rpy="0.0 0.0 ${pi}"/>
       <parent link="palm"/>
       <child link="${prefix}finger_0_proximal_phalanx"/>
       <axis xyz="1 0 0" />
@@ -68,7 +67,7 @@
       <mimic joint="${prefix}finger_joint" multiplier="1" offset="0" />
     </joint>
     <joint name="${prefix}finger_1_palm_proximal_phalanx" type="revolute">
-      <origin xyz="0.0 0.0127 0.06142" rpy="0.0 0.0 0.0"/>
+      <origin xyz="${finger_1_palm_proximal_phalanx_origin}" rpy="0.0 0.0 0.0"/>
       <parent link="palm"/>
       <child link="${prefix}finger_1_proximal_phalanx"/>
       <axis xyz="1 0 0" />
