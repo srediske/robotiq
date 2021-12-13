@@ -27,6 +27,7 @@
 
     <!-- Extract subsections from yaml dictionaries -->
     <xacro:property name="sec_limits" value="${config_joint_limit_parameters['joint_limits']}"/>
+    <xacro:property name="sec_offsets" value="${config_physical_parameters['offsets']}"/>
     <xacro:property name="sec_inertia_parameters" value="${config_physical_parameters['inertia_parameters']}" />
     <xacro:property name="sec_mesh_files" value="${config_visual_parameters['mesh_files']}" />
 
@@ -128,5 +129,27 @@
     <xacro:property name="finger_link_3_visual_material_name" value="${finger_link_3_mesh['visual']['material']['name']}" scope="parent"/>
     <xacro:property name="finger_link_3_visual_material_color" value="${finger_link_3_mesh['visual']['material']['color']}" scope="parent"/>
     <xacro:property name="finger_link_3_collision_mesh" value="${finger_link_3_mesh['collision']['mesh']}" scope="parent"/>
+
+    <!-- Origin/Offset parameters -->
+    <xacro:property name="palm_finger_1_joint_origin_xyz" value="${sec_offsets['palm_finger_1_joint']['origin']['xyz']}" scope="parent"/>
+    <xacro:property name="palm_finger_1_joint_origin_rpy" value="${sec_offsets['palm_finger_1_joint']['origin']['rpy']}" scope="parent"/>
+    <xacro:property name="palm_finger_2_joint_origin_xyz" value="${sec_offsets['palm_finger_2_joint']['origin']['xyz']}" scope="parent"/>
+    <xacro:property name="palm_finger_2_joint_origin_rpy" value="${sec_offsets['palm_finger_2_joint']['origin']['rpy']}" scope="parent"/>
+    <xacro:property name="palm_finger_middle_joint_origin_xyz" value="${sec_offsets['palm_finger_middle_joint']['origin']['xyz']}" scope="parent"/>
+    <xacro:property name="palm_finger_middle_joint_origin_rpy" value="${sec_offsets['palm_finger_middle_joint']['origin']['rpy']}" scope="parent"/>
+    <xacro:property name="link_0_origin_xyz" value="${sec_offsets['link_0']['origin']['xyz']}" scope="parent"/>
+    <xacro:property name="link_0_origin_rpy" value="${sec_offsets['link_0']['origin']['rpy']}" scope="parent"/>
+    <xacro:property name="link_1_origin_xyz" value="${sec_offsets['link_1']['origin']['xyz']}" scope="parent"/>
+    <xacro:property name="link_1_origin_rpy" value="${sec_offsets['link_1']['origin']['rpy']}" scope="parent"/>
+    <xacro:property name="link_2_origin_xyz" value="${sec_offsets['link_2']['origin']['xyz']}" scope="parent"/>
+    <xacro:property name="link_2_origin_rpy" value="${sec_offsets['link_2']['origin']['rpy']}" scope="parent"/>
+    <xacro:property name="link_3_origin_xyz" value="${sec_offsets['link_3']['origin']['xyz']}" scope="parent"/>
+    <xacro:property name="link_3_origin_rpy" value="${sec_offsets['link_3']['origin']['rpy']}" scope="parent"/>
+    <xacro:property name="joint_1_origin_xyz" value="${sec_offsets['joint_1']['origin']['xyz']}" scope="parent"/>
+    <xacro:property name="joint_1_origin_rpy" value="${sec_offsets['joint_1']['origin']['rpy']}" scope="parent"/>
+    <xacro:property name="joint_2_origin_xyz" value="${sec_offsets['joint_2']['origin']['xyz']}" scope="parent"/>
+    <xacro:property name="joint_2_origin_rpy" value="${sec_offsets['joint_2']['origin']['rpy']}" scope="parent"/>
+    <xacro:property name="joint_3_origin_xyz" value="${sec_offsets['joint_3']['origin']['xyz']}" scope="parent"/>
+    <xacro:property name="joint_3_origin_rpy" value="${sec_offsets['joint_3']['origin']['rpy']}" scope="parent"/>
   </xacro:macro>
 </robot>
