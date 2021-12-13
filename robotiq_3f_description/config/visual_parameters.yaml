@@ -1,0 +1,47 @@
+# Visualisation
+
+mesh_files:
+  palm:
+    visual:
+      mesh: "package://robotiq_3f_description/meshes/visual/palm.dae"
+      material:
+        name: "Grey"
+        color: "0.5 0.5 0.5 1.0"
+    collision:
+      mesh: "package://robotiq_3f_description/meshes/collision/palm.stl"
+
+  finger_link_0:
+    visual:
+      mesh: "package://robotiq_3f_description/meshes/visual/link_0.dae"
+      material:
+        name: "Grey"
+        color: "0.5 0.5 0.5 1.0"
+    collision:
+      mesh: "package://robotiq_3f_description/meshes/collision/link_0.stl"
+
+  finger_link_1:
+    visual:
+      mesh: "package://robotiq_3f_description/meshes/visual/link_1.dae"
+      material:
+        name: "Grey"
+        color: "0.5 0.5 0.5 1.0"
+    collision:
+      mesh: "package://robotiq_3f_description/meshes/collision/link_1.stl"
+
+  finger_link_2:
+    visual:
+      mesh: "package://robotiq_3f_description/meshes/visual/link_2.dae"
+      material:
+        name: "Grey"
+        color: "0.5 0.5 0.5 1.0"
+    collision:
+      mesh: "package://robotiq_3f_description/meshes/collision/link_2.stl"
+
+  finger_link_3:
+    visual:
+      mesh: "package://robotiq_3f_description/meshes/visual/link_3.dae"
+      material:
+        name: "Grey"
+        color: "0.5 0.5 0.5 1.0"
+    collision:
+      mesh: "package://robotiq_3f_description/meshes/collision/link_3.stl"

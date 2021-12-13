@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+  <!-- Definition of the main macro. -->
+  <xacro:macro name="robotiq_2f85_gazebo" params="
+    prefix
+    joint_limits_parameters_file
+    physical_parameters_file
+    visual_parameters_file
+    transmission_hw_interface:=hardware_interface/EffortJointInterface"
+  >
+    <xacro:include filename="$(find robotiq_2f_description)/urdf/robotiq_2f_macro.xacro"/>
+
+    <xacro:robotiq_2f_assembler
+      prefix="${prefix}"
+      joint_limits_parameters_file="${joint_limits_parameters_file}"
+      physical_parameters_file="${physical_parameters_file}"
+      visual_parameters_file="${visual_parameters_file}"
+      transmission_hw_interface="${transmission_hw_interface}"
+    />
+
+    <gazebo>
+      <!-- Configure mimic_joint_plugin for non-driven joints. -->
+      <plugin filename="libroboticsgroup_gazebo_mimic_joint_plugin.so" name="${prefix}mimic_0">
+        <joint>${prefix}finger_0_palm_bar</joint>
+        <mimicJoint>${prefix}finger_1_palm_bar_mimic</mimicJoint>
+        <multiplier>1.0</multiplier>
+      </plugin>
+      <plugin filename="libroboticsgroup_gazebo_mimic_joint_plugin.so" name="${prefix}mimic_1">
+        <joint>${prefix}finger_0_palm_bar</joint>
+        <mimicJoint>${prefix}finger_0_palm_proximal_phalanx</mimicJoint>
+        <multiplier>1.0</multiplier>
+      </plugin>
+      <plugin filename="libroboticsgroup_gazebo_mimic_joint_plugin.so" name="${prefix}mimic_2">
+        <joint>${prefix}finger_0_palm_bar</joint>
+        <mimicJoint>${prefix}finger_1_palm_proximal_phalanx</mimicJoint>
+        <multiplier>1.0</multiplier>
+      </plugin>
+        <plugin filename="libroboticsgroup_gazebo_mimic_joint_plugin.so" name="${prefix}mimic_3">
+        <joint>${prefix}finger_0_palm_bar</joint>
+        <mimicJoint>${prefix}finger_1_bar_fingertip</mimicJoint>
+        <multiplier>-1.0</multiplier>
+      </plugin>
+      <plugin filename="libroboticsgroup_gazebo_mimic_joint_plugin.so" name="${prefix}mimic_4">
+        <joint>${prefix}finger_0_palm_bar</joint>
+        <mimicJoint>${prefix}finger_0_bar_fingertip</mimicJoint>
+        <multiplier>-1.0</multiplier>
+      </plugin>
+    </gazebo>
+
+  </xacro:macro>
+</robot>

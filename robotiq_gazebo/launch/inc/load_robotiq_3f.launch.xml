@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<launch>
+
+  <!--Parameter files -->
+  <arg name="joint_limit_params" default="$(find robotiq_3f_description)/config/joint_limits.yaml" doc="YAML file containing the joint limit values"/>
+  <arg name="kinematics_params" doc="YAML file containing the robot's kinematic parameters. These will be different for each robot as they contain the robot's calibration."/>
+  <arg name="physical_params" default="$(find robotiq_3f_description)/config/physical_parameters.yaml" doc="YAML file containing the physical parameters of the robot"/>
+  <arg name="visual_params" default="$(find robotiq_3f_description)/config/visual_parameters.yaml" doc="YAML file containing the visual model of the robot"/>
+
+  <!--Common parameters  -->
+  <arg name="prefix" default=""/>
+  <arg name="transmission_hw_interface" default="hardware_interface/EffortJointInterface" doc="The hardware_interface to expose for each joint in the simulated robot (one of: [PositionJointInterface, VelocityJointInterface, EffortJointInterface])"/>
+
+  <param name="robot_description" command="$(find xacro)/xacro '$(find robotiq_gazebo)/urdf/robotiq_3f.xacro'
+    prefix:=$(arg prefix)
+    joint_limit_params:=$(arg joint_limit_params)
+    physical_params:=$(arg physical_params)
+    visual_params:=$(arg visual_params)
+    transmission_hw_interface:=$(arg transmission_hw_interface)"
+    />
+</launch>

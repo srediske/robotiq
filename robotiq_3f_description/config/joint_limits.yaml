@@ -1,0 +1,52 @@
+# Joints limits
+
+joint_limits:
+  palm_finger_1_joint:
+    has_acceleration_limits: false
+    has_effort_limits: true
+    has_position_limits: true
+    has_velocity_limits: true
+    min_position: -0.1784
+    max_position: 0.192
+    max_velocity: 1.0
+    max_effort: 10.0
+
+  palm_finger_2_joint:
+    has_acceleration_limits: false
+    has_effort_limits: true
+    has_position_limits: true
+    has_velocity_limits: true
+    min_position: -0.192
+    max_position: 0.1784
+    max_velocity: 1.0
+    max_effort: 10.0
+
+  finger_joint_1:
+    has_acceleration_limits: false
+    has_effort_limits: true
+    has_position_limits: true
+    has_velocity_limits: true
+    min_position: 0.0495
+    max_position: 1.2218
+    max_velocity: 1.0
+    max_effort: 10.0
+
+  finger_joint_2:
+    has_acceleration_limits: false
+    has_effort_limits: true
+    has_position_limits: true
+    has_velocity_limits: true
+    min_position: 0.0
+    max_position: 1.5708
+    max_velocity: 1.0
+    max_effort: 10.0
+
+  finger_joint_3:
+    has_acceleration_limits: false
+    has_effort_limits: true
+    has_position_limits: true
+    has_velocity_limits: true
+    min_position: -1.2217
+    max_position: -0.0523
+    max_velocity: 1.0
+    max_effort: 10.0

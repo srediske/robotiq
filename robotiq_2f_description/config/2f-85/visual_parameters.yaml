@@ -1,0 +1,56 @@
+# Visualisation
+
+mesh_files:
+  palm:
+    visual:
+      mesh: "package://robotiq_2f_description/meshes/2f-85/visual/palm.stl"
+      material:
+        name: "Grey"
+        color: "0.5 0.5 0.5 1.0"
+    collision:
+      mesh: "package://robotiq_2f_description/meshes/2f-85/collision/palm.stl"
+
+  bar_link_0:
+    visual:
+      mesh: "package://robotiq_2f_description/meshes/2f-85/visual/bar_link_0.dae"
+      material:
+        name: "Grey"
+        color: "0.5 0.5 0.5 1.0"
+    collision:
+      mesh: "package://robotiq_2f_description/meshes/2f-85/collision/bar_link_0.dae"
+
+  bar_link_1:
+    visual:
+      mesh: "package://robotiq_2f_description/meshes/2f-85/visual/bar_link_1.dae"
+      material:
+        name: "Grey"
+        color: "0.5 0.5 0.5 1.0"
+    collision:
+      mesh: "package://robotiq_2f_description/meshes/2f-85/collision/bar_link_1.dae"
+
+  proximal_phalanx:
+    visual:
+      mesh: "package://robotiq_2f_description/meshes/2f-85/visual/proximal_phalanx.dae"
+      material:
+        name: "Grey"
+        color: "0.5 0.5 0.5 1.0"
+    collision:
+      mesh: "package://robotiq_2f_description/meshes/2f-85/collision/proximal_phalanx.dae"
+
+  fingertip:
+    visual:
+      mesh: "package://robotiq_2f_description/meshes/2f-85/visual/fingertip.dae"
+      material:
+        name: "Grey"
+        color: "0.5 0.5 0.5 1.0"
+    collision:
+      mesh: "package://robotiq_2f_description/meshes/2f-85/collision/fingertip.dae"
+
+  finger_pad:
+    visual:
+      box_size: "0.022 0.00635 0.0375"
+      material:
+        name: "White"
+        color: "0.9 0.9 0.9 1.0"
+    collision:
+      box_size: "0.022 0.00635 0.0375"

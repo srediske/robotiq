@@ -1,0 +1,77 @@
+# todo: rename controllers -> remove robotiq_ and fix it with ns or group_ns
+robotiq_joint_state_controller:
+    type: joint_state_controller/JointStateController
+    publish_rate: &loop_hz 500
+
+robotiq_pos_joint_traj_controller:
+  type: position_controllers/JointTrajectoryController
+  joints: &robot_joints
+     - finger_1_joint_1
+     - finger_1_joint_2
+     - finger_1_joint_3
+     - finger_2_joint_1
+     - finger_2_joint_2
+     - finger_2_joint_3
+     - finger_middle_joint_1
+     - finger_middle_joint_2
+     - finger_middle_joint_3
+     - palm_finger_1_joint
+     - palm_finger_2_joint
+  constraints:
+      goal_time: 0.6
+      stopped_velocity_tolerance: 0.05
+      finger_1_joint_1: {trajectory: 0.1, goal: 0.1}
+      finger_1_joint_2: {trajectory: 0.1, goal: 0.1}
+      finger_1_joint_3: {trajectory: 0.1, goal: 0.1}
+      finger_2_joint_1: {trajectory: 0.1, goal: 0.1}
+      finger_2_joint_2: {trajectory: 0.1, goal: 0.1}
+      finger_2_joint_3: {trajectory: 0.1, goal: 0.1}
+      finger_middle_joint_1: {trajectory: 0.1, goal: 0.1}
+      finger_middle_joint_2: {trajectory: 0.1, goal: 0.1}
+      finger_middle_joint_3: {trajectory: 0.1, goal: 0.1}
+      palm_finger_1_joint: {trajectory: 0.1, goal: 0.1}
+      palm_finger_2_joint: {trajectory: 0.1, goal: 0.1}
+  stop_trajectory_duration: 0.5
+  state_publish_rate:  *loop_hz
+  action_monitor_rate: 10
+
+robotiq_eff_joint_traj_controller:
+  type: effort_controllers/JointTrajectoryController
+  joints: *robot_joints
+  constraints:
+      goal_time: 0.6
+      stopped_velocity_tolerance: 0.05
+      finger_1_joint_1: {trajectory: 0.1, goal: 0.1}
+      finger_1_joint_2: {trajectory: 0.1, goal: 0.1}
+      finger_1_joint_3: {trajectory: 0.1, goal: 0.1}
+      finger_2_joint_1: {trajectory: 0.1, goal: 0.1}
+      finger_2_joint_2: {trajectory: 0.1, goal: 0.1}
+      finger_2_joint_3: {trajectory: 0.1, goal: 0.1}
+      finger_middle_joint_1: {trajectory: 0.1, goal: 0.1}
+      finger_middle_joint_2: {trajectory: 0.1, goal: 0.1}
+      finger_middle_joint_3: {trajectory: 0.1, goal: 0.1}
+      palm_finger_1_joint: {trajectory: 0.1, goal: 0.1}
+      palm_finger_2_joint: {trajectory: 0.1, goal: 0.1}
+  stop_trajectory_duration: 0.5
+  state_publish_rate:  *loop_hz
+  action_monitor_rate: 10
+  gains: # Required because we're controlling an effort interface
+    finger_1_joint_1: {p: 10,  d: 0.5, i: 0, i_clamp: 0}
+    finger_1_joint_2: {p: 10,  d: 0.5, i: 0, i_clamp: 0}
+    finger_1_joint_3: {p: 10,  d: 0.5, i: 0, i_clamp: 0}
+    finger_2_joint_1: {p: 10,  d: 0.5, i: 0, i_clamp: 0}
+    finger_2_joint_2: {p: 10,  d: 0.5, i: 0, i_clamp: 0}
+    finger_2_joint_3: {p: 10,  d: 0.5, i: 0, i_clamp: 0}
+    finger_middle_joint_1: {p: 1,  d: 0.5, i: 0, i_clamp: 0}
+    finger_middle_joint_2: {p: 1,  d: 0.5, i: 0, i_clamp: 0}
+    finger_middle_joint_3: {p: 1,  d: 0.5, i: 0, i_clamp: 0}
+    palm_finger_1_joint: {p: 1,  d: 0.5, i: 0, i_clamp: 0}
+    palm_finger_2_joint: {p: 1,  d: 0.5, i: 0, i_clamp: 0}
+
+robotiq_joint_group_pos_controller:
+  type: position_controllers/JointGroupPositionController
+  joints: *robot_joints
+
+robotiq_joint_group_eff_controller:
+  type: effort_controllers/JointGroupEffortController
+  joints: *robot_joints
