@@ -86,7 +86,7 @@
       -P $(arg spawn_P)
       -R $(arg spawn_R)
       -Y $(arg spawn_Y)
-      -J robot::finger_0_palm_bar $(arg spawn_finger_joint)"
+      -J robot::finger_joint $(arg spawn_finger_joint)"
     output="screen" respawn="false" />
 
   <!-- Load and start the controllers listed in the 'controllers' arg. -->

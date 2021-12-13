@@ -34,7 +34,7 @@
     />
 
     <xacro:transmission
-      joint_name="${prefix}finger_0_palm_bar"
+      joint_name="${prefix}finger_joint"
       hw_interface="${transmission_hw_interface}"
     />
 

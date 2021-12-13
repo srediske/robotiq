@@ -21,27 +21,27 @@
     <gazebo>
       <!-- Configure mimic_joint_plugin for non-driven joints. -->
       <plugin filename="libroboticsgroup_gazebo_mimic_joint_plugin.so" name="${prefix}mimic_0">
-        <joint>${prefix}finger_0_palm_bar</joint>
-        <mimicJoint>${prefix}finger_1_palm_bar_mimic</mimicJoint>
+        <joint>${prefix}finger_joint</joint>
+        <mimicJoint>${prefix}finger_joint_mimic</mimicJoint>
         <multiplier>1.0</multiplier>
       </plugin>
       <plugin filename="libroboticsgroup_gazebo_mimic_joint_plugin.so" name="${prefix}mimic_1">
-        <joint>${prefix}finger_0_palm_bar</joint>
+        <joint>${prefix}finger_joint</joint>
         <mimicJoint>${prefix}finger_0_palm_proximal_phalanx</mimicJoint>
         <multiplier>1.0</multiplier>
       </plugin>
       <plugin filename="libroboticsgroup_gazebo_mimic_joint_plugin.so" name="${prefix}mimic_2">
-        <joint>${prefix}finger_0_palm_bar</joint>
+        <joint>${prefix}finger_joint</joint>
         <mimicJoint>${prefix}finger_1_palm_proximal_phalanx</mimicJoint>
         <multiplier>1.0</multiplier>
       </plugin>
         <plugin filename="libroboticsgroup_gazebo_mimic_joint_plugin.so" name="${prefix}mimic_3">
-        <joint>${prefix}finger_0_palm_bar</joint>
+        <joint>${prefix}finger_joint</joint>
         <mimicJoint>${prefix}finger_1_bar_fingertip</mimicJoint>
         <multiplier>-1.0</multiplier>
       </plugin>
       <plugin filename="libroboticsgroup_gazebo_mimic_joint_plugin.so" name="${prefix}mimic_4">
-        <joint>${prefix}finger_0_palm_bar</joint>
+        <joint>${prefix}finger_joint</joint>
         <mimicJoint>${prefix}finger_0_bar_fingertip</mimicJoint>
         <multiplier>-1.0</multiplier>
       </plugin>

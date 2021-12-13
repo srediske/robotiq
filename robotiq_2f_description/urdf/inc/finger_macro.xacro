@@ -169,7 +169,7 @@
              upper="${bar_fingertip_joint_upper_limit}"
              effort="${bar_fingertip_joint_effort_limit}"
              velocity="${bar_fingertip_joint_velocity_limit}"/>
-      <mimic joint="finger_0_palm_bar" multiplier="-1" offset="0"/>
+      <mimic joint="finger_joint" multiplier="-1" offset="0"/>
     </joint>
     <joint name="${prefix}fingertip_pad" type="fixed">
       <origin xyz="0 -0.0220203446692936 0.03242" rpy="0 0 0"/>
