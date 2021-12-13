@@ -1,35 +1,86 @@
 # Robotiq
 
-It is based on the original Robotiq repository and it has been updated to
-ROS Noetic.
+This repository is based on the
+[original Robotiq repository (which is no longer maintained)](https://github.com/ros-industrial/robotiq)
+and the simulation parts has been updated to ROS Noetic and Gazebo 11.
 
-The (old) implemented models were extended so that they work
-with newly implemented effort_controllers in Gazebo 11.
+The implemented models have been extended to work with both  
+a position interface as well as a effort interface in Gazebo 11:  
+`position_controllers/JointTrajectoryController`  
+`effort_controllers/JointTrajectoryController`
 
 #### TODO:
 
-* Refactoring -> same structure as UR (gazebo) repo
 * Add and update controller files for real robot (+modbus etc.)
 
-#### Usage 3f-gripper:
+## Installation
 
-For test purposes and as a stand-alone, use the launchfile with a fixed Gripper:
+#### Dependencies
 
-    cd robotiq_3f_gripper_articulated_gazebo/launch
-    roslaunch fixed_robotiq_gripper.launch
-    
-Additionally, use a Python-script to test the movement:
+This software requires a system setup with Robot Operating System (ROS).
+It is recommended to use **Ubuntu 20.04** with
+**[ROS Noetic](http://wiki.ros.org/noetic/Installation)** and
+**[Catkin](https://catkin-tools.readthedocs.io/en/latest/installing.html)**.
 
-    cd ../control-test
-    python gripper_test.py
+#### Building
+
+```bash
+# source global ros
+source /opt/ros/noetic/setup.bash
+
+# create a catkin workspace
+mkdir -p catkin_ws/src && cd catkin_ws
+
+# clone the repository
+git clone https://gitlab.zal.aero/stephan.rediske/robotiq
+
+# install dependencies
+sudo apt update
+rosdep update
+rosdep install --from-paths src --ignore-src -y
+
+# build the workspace
+catkin build
+
+# activate the workspace (ie: source it)
+source devel/setup.bash
+```
+
+## Usage
+
+#### 3-Finger Adaptive Robot Gripper
+
+For test purposes and as a stand-alone, use the launch file with a
+fixed Gripper:
+
+    roslaunch robotiq_gazebo robotiq_3f_bringup.launch
     
 For integration into bigger environments (e.g. with Robot-arms) create a new
 package with a high-level .xacro which combines all parts of the new robot.
 
-Use `robotiq-3f-gripper_articulated_macro_transmissions.xacro`, implement it as
-child to the robot-arm and add the ros_control plugin,
-see `fxed_robotiq-3f-gripper_articulated.xacro` as an example.
+Use `robotiq_3f_description/urdf/robotiq_3f_macro.xacro`, implement it
+as child to the robot-arm and add the ros_control plugin,
+see `robotiq_gazebo/urdf/robotiq_3f.xacro` as an example.
 
-#### Usage 2f-gripper:
+#### 2F-85 Gripper
 
-tbd
+For test purposes and as a stand-alone, use the launch file with a
+fixed Gripper:
+
+    roslaunch robotiq_gazebo robotiq_2f85_bringup.launch
+
+For integration into bigger environments (e.g. with Robot-arms) create a new
+package with a high-level .xacro which combines all parts of the new robot.
+
+Use `robotiq_2f_description/urdf/robotiq_2f_macro.xacro`, implement it
+as child to the robot-arm and add the ros_control plugin,
+see `robotiq_gazebo/urdf/robotiq_2f85.xacro` as an example.
+
+#### Note
+
+For simplicity, an argument has been added to the top-level launch files
+(`robotiq_gazebo/launch/robotiq_3f_bringup.launch` and
+`robotiq_gazebo/launch/robotiq_2f85_bringup.launch`)
+to switch between position and effort interface, just use the flag
+`use_effort_controller:=false` to start with position interface.
+By default it's true, so it starts with effort interface.
