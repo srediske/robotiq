@@ -1,7 +1,7 @@
 # Joints limits
 
 joint_limits:
-  palm_bar:  # This is the only driven joint
+  finger_joint:  # This is the only driven joint
     min_position: 0.0
     max_position: 0.81
     max_velocity: 0.5

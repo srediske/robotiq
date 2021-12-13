@@ -34,26 +34,26 @@
       </inertial>
     </link>
 
-    <joint name="${prefix}finger_0_palm_bar" type="revolute">
+    <joint name="${prefix}finger_joint" type="revolute">
       <origin xyz="${finger_joint_origin}" rpy="0.0 0.0 ${pi}"/>
       <parent link="${prefix}palm"/>
       <child link="${prefix}finger_0_bar_link_0"/>
       <axis xyz="1 0 0"/>
-      <limit lower="${palm_bar_joint_lower_limit}"
-             upper="${palm_bar_joint_upper_limit}"
-             effort="${palm_bar_joint_effort_limit}"
-             velocity="${palm_bar_joint_velocity_limit}"/>
+      <limit lower="${finger_joint_lower_limit}"
+             upper="${finger_joint_upper_limit}"
+             effort="${finger_joint_effort_limit}"
+             velocity="${finger_joint_velocity_limit}"/>
     </joint>
-    <joint name="${prefix}finger_1_palm_bar_mimic" type="revolute">
+    <joint name="${prefix}finger_joint_mimic" type="revolute">
       <origin xyz="${finger_joint_mimic_origin}" rpy="0.0 0.0 0.0"/>
       <parent link="${prefix}palm"/>
       <child link="${prefix}finger_1_bar_link_0"/>
       <axis xyz="1 0 0"/>
-      <limit lower="${palm_bar_joint_lower_limit}"
-             upper="${palm_bar_joint_upper_limit}"
-             effort="${palm_bar_joint_effort_limit}"
-             velocity="${palm_bar_joint_velocity_limit}"/>
-      <mimic joint="${prefix}finger_0_palm_bar" multiplier="1" offset="0" />
+      <limit lower="${finger_joint_lower_limit}"
+             upper="${finger_joint_upper_limit}"
+             effort="${finger_joint_effort_limit}"
+             velocity="${finger_joint_velocity_limit}"/>
+      <mimic joint="${prefix}finger_joint" multiplier="1" offset="0" />
     </joint>
     <joint name="${prefix}finger_0_palm_proximal_phalanx" type="revolute">
       <origin xyz="${finger_0_palm_proximal_phalanx_origin}" rpy="0.0 0.0 ${pi}"/>
@@ -64,7 +64,7 @@
              upper="${palm_proximal_phalanx_joint_upper_limit}"
              effort="${palm_proximal_phalanx_joint_effort_limit}"
              velocity="${palm_proximal_phalanx_joint_velocity_limit}"/>
-      <mimic joint="${prefix}finger_0_palm_bar" multiplier="1" offset="0" />
+      <mimic joint="${prefix}finger_joint" multiplier="1" offset="0" />
     </joint>
     <joint name="${prefix}finger_1_palm_proximal_phalanx" type="revolute">
       <origin xyz="${finger_1_palm_proximal_phalanx_origin}" rpy="0.0 0.0 0.0"/>
@@ -75,7 +75,7 @@
              upper="${palm_proximal_phalanx_joint_upper_limit}"
              effort="${palm_proximal_phalanx_joint_effort_limit}"
              velocity="${palm_proximal_phalanx_joint_velocity_limit}"/>
-      <mimic joint="${prefix}finger_0_palm_bar" multiplier="1" offset="0" />
+      <mimic joint="${prefix}finger_joint" multiplier="1" offset="0" />
     </joint>
   </xacro:macro>
 </robot>
