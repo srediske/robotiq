@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <xacro:include filename="inc/finger_macro.xacro"/>
+  <xacro:include filename="inc/palm_macro.xacro"/>
+  <xacro:include filename="inc/robotiq_common.xacro"/>
+
+  <xacro:macro name="robotiq_3f_assembler" params="
+    prefix
+    joint_limits_parameters_file
+    physical_parameters_file
+    visual_parameters_file
+    transmission_hw_interface:=hardware_interface/EffortJointInterface"
+  >
+
+    <xacro:finger_articulated
+      prefix="${prefix}finger_1_"
+      joint_limits_parameters_file="${joint_limits_parameters_file}"
+      physical_parameters_file="${physical_parameters_file}"
+      visual_parameters_file="${visual_parameters_file}"
+    />
+    <xacro:finger_articulated
+      prefix="${prefix}finger_2_"
+      joint_limits_parameters_file="${joint_limits_parameters_file}"
+      physical_parameters_file="${physical_parameters_file}"
+      visual_parameters_file="${visual_parameters_file}"
+    />
+    <xacro:finger_articulated
+      prefix="${prefix}finger_middle_"
+      joint_limits_parameters_file="${joint_limits_parameters_file}"
+      physical_parameters_file="${physical_parameters_file}"
+      visual_parameters_file="${visual_parameters_file}"
+    />
+
+    <xacro:palm
+      prefix="${prefix}"
+      joint_limits_parameters_file="${joint_limits_parameters_file}"
+      physical_parameters_file="${physical_parameters_file}"
+      visual_parameters_file="${visual_parameters_file}"
+    />
+
+    <xacro:transmission
+      joint_name="${prefix}palm_finger_1_joint"
+      hw_interface="${transmission_hw_interface}"
+    />
+    <xacro:transmission
+      joint_name="${prefix}palm_finger_2_joint"
+      hw_interface="${transmission_hw_interface}"
+    />
+    <xacro:transmission
+      joint_name="${prefix}finger_1_joint_1"
+      hw_interface="${transmission_hw_interface}"
+    />
+    <xacro:transmission
+      joint_name="${prefix}finger_1_joint_2"
+      hw_interface="${transmission_hw_interface}"
+    />
+    <xacro:transmission
+      joint_name="${prefix}finger_1_joint_3"
+      hw_interface="${transmission_hw_interface}"
+    />
+    <xacro:transmission
+      joint_name="${prefix}finger_2_joint_1"
+      hw_interface="${transmission_hw_interface}"
+    />
+    <xacro:transmission
+      joint_name="${prefix}finger_2_joint_2"
+      hw_interface="${transmission_hw_interface}"
+    />
+    <xacro:transmission
+      joint_name="${prefix}finger_2_joint_3"
+      hw_interface="${transmission_hw_interface}"
+    />
+    <xacro:transmission
+      joint_name="${prefix}finger_middle_joint_1"
+      hw_interface="${transmission_hw_interface}"
+    />
+    <xacro:transmission
+      joint_name="${prefix}finger_middle_joint_2"
+      hw_interface="${transmission_hw_interface}"
+    />
+    <xacro:transmission
+      joint_name="${prefix}finger_middle_joint_3"
+      hw_interface="${transmission_hw_interface}"
+    />
+
+  </xacro:macro>
+</robot>

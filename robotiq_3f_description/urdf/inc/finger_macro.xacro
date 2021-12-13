@@ -1,0 +1,169 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+  <!--
+    Creates an articulated Robotiq 3f-Gripper finger with the passed in prefix.
+    The prefix typcially includes the hand prefix and an identifier for the
+    finger(i.e. finger_1, etc...).
+  -->
+  <xacro:macro name="finger_articulated" params="
+    prefix
+    joint_limits_parameters_file
+    physical_parameters_file
+    visual_parameters_file"
+  >
+    <!-- Load configuration data from the provided .yaml files -->
+    <xacro:read_model_data
+      joint_limits_parameters_file="${joint_limits_parameters_file}"
+      physical_parameters_file="${physical_parameters_file}"
+      visual_parameters_file="${visual_parameters_file}"
+    />
+
+    <link name="${prefix}link_0">
+      <visual>
+        <origin xyz="0.020 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="${finger_link_0_visual_mesh}" />
+        </geometry>
+        <material name="${finger_link_0_visual_material_name}">
+          <color rgba="${finger_link_0_visual_material_color}"/>
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0.020 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="${finger_link_0_collision_mesh}" />
+        </geometry>
+      </collision>
+      <inertial>
+        <origin xyz="${finger_link_0_origin_xyz}" rpy="${finger_link_0_origin_rpy}"/>
+        <mass value="${finger_link_0_mass}"/>
+        <inertia ixx="${finger_link_0_ixx}"
+                 ixy="${finger_link_0_ixy}"
+                 ixz="${finger_link_0_ixz}"
+                 iyy="${finger_link_0_iyy}"
+                 iyz="${finger_link_0_iyz}"
+                 izz="${finger_link_0_izz}"/>
+      </inertial>
+    </link>
+    <link name="${prefix}link_1">
+      <visual>
+        <origin xyz="0.050 -.028 0" rpy="0 0 -0.52"/>
+        <geometry>
+          <mesh filename="${finger_link_1_visual_mesh}" />
+        </geometry>
+        <material name="${finger_link_1_visual_material_name}">
+          <color rgba="${finger_link_1_visual_material_color}"/>
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0.050 -.028 0" rpy="0 0 -0.52"/>
+        <geometry>
+          <mesh filename="${finger_link_1_collision_mesh}" />
+        </geometry>
+      </collision>
+      <inertial>
+        <origin xyz="${finger_link_1_origin_xyz}" rpy="${finger_link_1_origin_rpy}"/>
+        <mass value="${finger_link_1_mass}"/>
+        <inertia ixx="${finger_link_1_ixx}"
+                 ixy="${finger_link_1_ixy}"
+                 ixz="${finger_link_1_ixz}"
+                 iyy="${finger_link_1_iyy}"
+                 iyz="${finger_link_1_iyz}"
+                 izz="${finger_link_1_izz}"/>
+      </inertial>
+    </link>
+    <link name="${prefix}link_2">
+      <!--
+        NOTE: This link has an offset in the z-direction based on the models that were
+        used to generate grap-it poses.  With the offset below the model appears visually
+        correct, but it is suspect.
+      -->
+      <visual>
+        <origin xyz="0.039 0 0.0075" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="${finger_link_2_visual_mesh}" />
+        </geometry>
+        <material name="${finger_link_2_visual_material_name}">
+          <color rgba="${finger_link_2_visual_material_color}"/>
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0.039 0 0.0075" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="${finger_link_2_collision_mesh}" />
+        </geometry>
+      </collision>
+      <inertial>
+        <origin xyz="${finger_link_2_origin_xyz}" rpy="${finger_link_2_origin_rpy}"/>
+        <mass value="${finger_link_2_mass}"/>
+        <inertia ixx="${finger_link_2_ixx}"
+                 ixy="${finger_link_2_ixy}"
+                 ixz="${finger_link_2_ixz}"
+                 iyy="${finger_link_2_iyy}"
+                 iyz="${finger_link_2_iyz}"
+                 izz="${finger_link_2_izz}"/>
+      </inertial>
+    </link>
+    <link name="${prefix}link_3">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0.52"/>
+        <geometry>
+          <mesh filename="${finger_link_3_visual_mesh}" />
+        </geometry>
+        <material name="${finger_link_3_visual_material_name}">
+          <color rgba="${finger_link_3_visual_material_color}"/>
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0.52"/>
+        <geometry>
+          <mesh filename="${finger_link_3_collision_mesh}" />
+        </geometry>
+      </collision>
+      <inertial>
+        <origin xyz="${finger_link_3_origin_xyz}" rpy="${finger_link_3_origin_rpy}"/>
+        <mass value="${finger_link_3_mass}"/>
+        <inertia ixx="${finger_link_3_ixx}"
+                 ixy="${finger_link_3_ixy}"
+                 ixz="${finger_link_3_ixz}"
+                 iyy="${finger_link_3_iyy}"
+                 iyz="${finger_link_3_iyz}"
+                 izz="${finger_link_3_izz}"/>
+      </inertial>
+    </link>
+
+    <joint name="${prefix}joint_1" type="revolute">
+      <parent link="${prefix}link_0"/>
+      <child link="${prefix}link_1"/>
+      <axis xyz="0 0 1"/>
+      <origin xyz="0.020 0 0" rpy="0 0 0"/>
+      <limit lower="${finger_joint_1_lower_limit}"
+             upper="${finger_joint_1_upper_limit}"
+             effort="${finger_joint_1_effort_limit}"
+             velocity="${finger_joint_1_velocity_limit}"/>
+      <dynamics damping="0" friction="0"/>
+    </joint>
+    <joint name="${prefix}joint_2" type="revolute">
+      <parent link="${prefix}link_1"/>
+      <child link="${prefix}link_2"/>
+      <axis xyz="0 0 1"/>
+      <origin xyz="0.050 -.028 0" rpy="0 0 -0.52"/>
+      <limit lower="${finger_joint_2_lower_limit}"
+             upper="${finger_joint_2_upper_limit}"
+             effort="${finger_joint_2_effort_limit}"
+             velocity="${finger_joint_2_velocity_limit}"/>
+      <dynamics damping="0" friction="0"/>
+    </joint>
+    <joint name="${prefix}joint_3" type="revolute">
+      <parent link="${prefix}link_2"/>
+      <child link="${prefix}link_3"/>
+      <axis xyz="0 0 1"/>
+      <origin xyz="0.039 0 0" rpy="0 0 0"/>
+      <limit lower="${finger_joint_3_lower_limit}"
+             upper="${finger_joint_3_upper_limit}"
+             effort="${finger_joint_3_effort_limit}"
+             velocity="${finger_joint_3_velocity_limit}"/>
+      <dynamics damping="0" friction="0"/>
+    </joint>
+  </xacro:macro>
+</robot>

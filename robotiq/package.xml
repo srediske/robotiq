@@ -3,15 +3,23 @@
   <name>robotiq</name>
   <version>1.0.0</version>
   <description>ROS drivers for Robotiq Adaptive Grippers</description>
+
+  <author>Nicolas Lauzier (Robotiq inc.) | preparatory work</author>
+  <author>Jean-Philippe Roberge (Robotiq inc.) | preparatory work</author>
+  <author>Stephan Rediske</author>
   <maintainer email="stephan.rediske@zal.aero">Stephan Rediske</maintainer>
-  <license>TODO</license>
-  <url type="website">https://www.zal.aero</url>
+
+  <license>BSD</license>
+
+  <url type="website">http://ros.org/wiki/robotiq</url>
+  <url type="official_repository">https://github.com/ros-industrial/robotiq</url>
+  <url type="internal_repository">https://gitlab.zal.aero/stephan.rediske/robotiq</url>
 
   <buildtool_depend>catkin</buildtool_depend>
   <exec_depend>robotiq_2f_85_gripper_visualization</exec_depend>
   <exec_depend>robotiq_2f_85_gripper_articulated_gazebo</exec_depend>
-  <exec_depend>robotiq_3f_gripper_visualization</exec_depend>
-  <exec_depend>robotiq_3f_gripper_articulated_gazebo</exec_depend>
+  <exec_depend>robotiq_3f_description</exec_depend>
+  <exec_depend>robotiq_gazebo</exec_depend>
 
   <export>
     <metapackage/>

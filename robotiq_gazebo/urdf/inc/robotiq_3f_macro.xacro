@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+  <!-- Definition of the main macro. -->
+  <xacro:macro name="robotiq_3f_gazebo" params="
+    prefix
+    joint_limits_parameters_file
+    physical_parameters_file
+    visual_parameters_file
+    transmission_hw_interface:=hardware_interface/EffortJointInterface"
+  >
+    <xacro:include filename="$(find robotiq_3f_description)/urdf/robotiq_3f_macro.xacro"/>
+
+    <xacro:robotiq_3f_assembler
+      prefix="${prefix}"
+      joint_limits_parameters_file="${joint_limits_parameters_file}"
+      physical_parameters_file="${physical_parameters_file}"
+      visual_parameters_file="${visual_parameters_file}"
+      transmission_hw_interface="${transmission_hw_interface}"
+    />
+
+    <!-- Configure self collision properties per link. -->
+    <gazebo reference="robotiq_hand_joint">
+      <selfCollide>true</selfCollide>
+    </gazebo>
+    <gazebo reference="palm_finger_1_joint">
+      <selfCollide>true</selfCollide>
+    </gazebo>
+    <gazebo reference="palm_finger_2_joint">
+      <selfCollide>true</selfCollide>
+    </gazebo>
+    <gazebo reference="finger_1_joint_1">
+      <selfCollide>true</selfCollide>
+    </gazebo>
+    <gazebo reference="finger_1_joint_2">
+      <selfCollide>true</selfCollide>
+    </gazebo>
+    <gazebo reference="finger_1_joint_3">
+      <selfCollide>true</selfCollide>
+    </gazebo>
+    <gazebo reference="finger_2_joint_1">
+      <selfCollide>true</selfCollide>
+    </gazebo>
+    <gazebo reference="finger_2_joint_2">
+      <selfCollide>true</selfCollide>
+    </gazebo>
+    <gazebo reference="finger_2_joint_3">
+      <selfCollide>true</selfCollide>
+    </gazebo>
+    <gazebo reference="finger_middle_joint_1">
+      <selfCollide>true</selfCollide>
+    </gazebo>
+    <gazebo reference="finger_middle_joint_2">
+      <selfCollide>true</selfCollide>
+    </gazebo>
+    <gazebo reference="finger_middle_joint_3">
+      <selfCollide>true</selfCollide>
+    </gazebo>
+
+  </xacro:macro>
+</robot>
