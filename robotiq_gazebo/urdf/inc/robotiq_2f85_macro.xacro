@@ -47,5 +47,28 @@
       </plugin>
     </gazebo>
 
+    <!-- Configure self collision properties per link. -->
+    <gazebo reference="palm">
+      <selfCollide>false</selfCollide>
+    </gazebo>
+    <gazebo reference="finger_0_proximal_phalanx">
+      <selfCollide>false</selfCollide>
+    </gazebo>
+    <gazebo reference="finger_1_proximal_phalanx">
+      <selfCollide>false</selfCollide>
+    </gazebo>
+    <gazebo reference="finger_0_bar_link_0">
+      <selfCollide>false</selfCollide>
+    </gazebo>
+    <gazebo reference="finger_1_bar_link_0">
+      <selfCollide>false</selfCollide>
+    </gazebo>
+    <gazebo reference="finger_0_fingertip">
+      <selfCollide>false</selfCollide>
+    </gazebo>
+    <gazebo reference="finger_1_fingertip">
+      <selfCollide>false</selfCollide>
+    </gazebo>
+
   </xacro:macro>
 </robot>
