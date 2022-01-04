@@ -19,41 +19,70 @@
     />
 
     <!-- Configure self collision properties per link. -->
-    <gazebo reference="robotiq_hand_joint">
+    <gazebo reference="palm">
+      <selfCollide>false</selfCollide>
+    </gazebo>
+    <gazebo reference="finger_1_link_0">
+      <selfCollide>false</selfCollide>
+    </gazebo>
+    <gazebo reference="finger_2_link_0">
+      <selfCollide>false</selfCollide>
+    </gazebo>
+    <gazebo reference="finger_1_link_1">
+      <selfCollide>false</selfCollide>
+    </gazebo>
+    <gazebo reference="finger_2_link_1">
+      <selfCollide>false</selfCollide>
+    </gazebo>
+    <gazebo reference="finger_middle_link_1">
+      <selfCollide>false</selfCollide>
+    </gazebo>
+    <gazebo reference="finger_1_link_2">
+      <selfCollide>false</selfCollide>
+    </gazebo>
+    <gazebo reference="finger_2_link_2">
+      <selfCollide>false</selfCollide>
+    </gazebo>
+    <gazebo reference="finger_middle_link_2">
+      <selfCollide>false</selfCollide>
+    </gazebo>
+    <gazebo reference="finger_1_link_3">
       <selfCollide>true</selfCollide>
     </gazebo>
-    <gazebo reference="palm_finger_1_joint">
+    <gazebo reference="finger_2_link_3">
       <selfCollide>true</selfCollide>
     </gazebo>
-    <gazebo reference="palm_finger_2_joint">
+    <gazebo reference="finger_middle_link_3">
       <selfCollide>true</selfCollide>
     </gazebo>
-    <gazebo reference="finger_1_joint_1">
-      <selfCollide>true</selfCollide>
+
+    <!-- Configure behavior of the (metal) finger pads/fingertips. -->
+    <gazebo reference="finger_1_link_3">
+      <kp>10000000.0</kp>
+      <kd>1.0</kd>
+      <mu1>1.0</mu1>
+      <mu2>1.0</mu2>
+      <fdir1 value="1 0 0"/>
+      <maxVel>0.0</maxVel>
+      <minDepth>0.003</minDepth>
     </gazebo>
-    <gazebo reference="finger_1_joint_2">
-      <selfCollide>true</selfCollide>
+    <gazebo reference="finger_2_link_3">
+      <kp>10000000.0</kp>
+      <kd>1.0</kd>
+      <mu1>1.0</mu1>
+      <mu2>1.0</mu2>
+      <fdir1 value="1 0 0"/>
+      <maxVel>0.0</maxVel>
+      <minDepth>0.003</minDepth>
     </gazebo>
-    <gazebo reference="finger_1_joint_3">
-      <selfCollide>true</selfCollide>
-    </gazebo>
-    <gazebo reference="finger_2_joint_1">
-      <selfCollide>true</selfCollide>
-    </gazebo>
-    <gazebo reference="finger_2_joint_2">
-      <selfCollide>true</selfCollide>
-    </gazebo>
-    <gazebo reference="finger_2_joint_3">
-      <selfCollide>true</selfCollide>
-    </gazebo>
-    <gazebo reference="finger_middle_joint_1">
-      <selfCollide>true</selfCollide>
-    </gazebo>
-    <gazebo reference="finger_middle_joint_2">
-      <selfCollide>true</selfCollide>
-    </gazebo>
-    <gazebo reference="finger_middle_joint_3">
-      <selfCollide>true</selfCollide>
+    <gazebo reference="finger_middle_link_3">
+      <kp>10000000.0</kp>
+      <kd>1.0</kd>
+      <mu1>1.0</mu1>
+      <mu2>1.0</mu2>
+      <fdir1 value="1 0 0"/>
+      <maxVel>0.0</maxVel>
+      <minDepth>0.003</minDepth>
     </gazebo>
 
   </xacro:macro>

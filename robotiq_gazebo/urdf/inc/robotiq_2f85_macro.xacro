@@ -47,5 +47,48 @@
       </plugin>
     </gazebo>
 
+    <!-- Configure self collision properties per link. -->
+    <gazebo reference="palm">
+      <selfCollide>false</selfCollide>
+    </gazebo>
+    <gazebo reference="finger_0_proximal_phalanx">
+      <selfCollide>false</selfCollide>
+    </gazebo>
+    <gazebo reference="finger_1_proximal_phalanx">
+      <selfCollide>false</selfCollide>
+    </gazebo>
+    <gazebo reference="finger_0_bar_link_0">
+      <selfCollide>false</selfCollide>
+    </gazebo>
+    <gazebo reference="finger_1_bar_link_0">
+      <selfCollide>false</selfCollide>
+    </gazebo>
+    <gazebo reference="finger_0_fingertip">
+      <selfCollide>false</selfCollide>
+    </gazebo>
+    <gazebo reference="finger_1_fingertip">
+      <selfCollide>false</selfCollide>
+    </gazebo>
+
+    <!-- Configure behavior of the (rubber) finger pads. -->
+    <gazebo reference="finger_0_finger_pad">
+      <kp>10000000.0</kp>
+      <kd>1.0</kd>
+      <mu1>1.0</mu1>
+      <mu2>1.0</mu2>
+      <fdir1 value="1 0 0"/>
+      <maxVel>0.0</maxVel>
+      <minDepth>0.003</minDepth>
+    </gazebo>
+    <gazebo reference="finger_1_finger_pad">
+      <kp>10000000.0</kp>
+      <kd>1.0</kd>
+      <mu1>1.0</mu1>
+      <mu2>1.0</mu2>
+      <fdir1 value="1 0 0"/>
+      <maxVel>0.0</maxVel>
+      <minDepth>0.003</minDepth>
+    </gazebo>
+
   </xacro:macro>
 </robot>
