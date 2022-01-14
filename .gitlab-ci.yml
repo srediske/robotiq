@@ -6,6 +6,7 @@ stages:
 variables:
   APT_CACHE_DIR: $CI_PROJECT_DIR/.cache/apt
   CATKIN_DIR: $CI_PROJECT_DIR/catkin
+  SECOND_REPO_PATH: https://github.com/roboticsgroup/roboticsgroup_gazebo_plugins
 
 default:
   image: docker.zal.aero/zal/topics/docker/ros:noetic-ros-base
@@ -30,6 +31,7 @@ install dependencies:
     - shopt -s extglob
     - rm -rf catkin
     - mkdir -p $CATKIN_DIR/src && mv !(catkin|apt) $CATKIN_DIR/src
+    - git clone $SECOND_REPO_PATH
     - mkdir -p $APT_CACHE_DIR ; mv /var/cache/apt/archives/* $APT_CACHE_DIR -f
     - apt-get update
     - apt-get install -y catkin-lint
