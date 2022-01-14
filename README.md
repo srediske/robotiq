@@ -22,6 +22,10 @@ It is recommended to use **Ubuntu 20.04** with
 **[ROS Noetic](http://wiki.ros.org/noetic/Installation)** and
 **[Catkin](https://catkin-tools.readthedocs.io/en/latest/installing.html)**.
 
+The MimicJointPlugin from the
+[roboticsgroup_gazebo_plugins](https://github.com/roboticsgroup/roboticsgroup_gazebo_plugins)
+package is needed for the 2F-85 Gripper.
+
 #### Building
 
 ```bash
@@ -29,9 +33,10 @@ It is recommended to use **Ubuntu 20.04** with
 source /opt/ros/noetic/setup.bash
 
 # create a catkin workspace
-mkdir -p catkin_ws/src && cd catkin_ws
+mkdir -p catkin_ws/src && cd catkin_ws/src
 
-# clone the repository
+# clone the repositories
+git clone https://github.com/roboticsgroup/roboticsgroup_gazebo_plugins
 git clone https://gitlab.zal.aero/stephan.rediske/robotiq
 
 # install dependencies
@@ -40,6 +45,7 @@ rosdep update
 rosdep install --from-paths src --ignore-src -y
 
 # build the workspace
+cd ..
 catkin build
 
 # activate the workspace (ie: source it)
