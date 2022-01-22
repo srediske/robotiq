@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://wiki.ros.org/xacro" name="robotiq_2f85_robot">
+  <!--
+    This is a convenience top-level xacro which loads the macro for the
+    Robotiq 2f-85.
+
+    This file is only useful when loading a stand-alone, completely isolated
+    robot with only default values for all parameters such as the visual and
+    physical parameters and joint limits.
+
+    This file is not intended to be integrated into a larger scene or other
+    composite xacro.
+
+    Instead, xacro:include 'inc/robotiq_2f_macro.xacro' and override the defaults
+    for the arguments to that macro.
+  -->
+  <xacro:include filename="$(find robotiq_2f_description)/urdf/inc/robotiq_2f_macro.xacro"/>
+  <xacro:robotiq_2f_assembler
+    prefix=""
+    joint_limits_parameters_file="$(find robotiq_2f_description)/config/2f-85/joint_limits.yaml"
+    physical_parameters_file="$(find robotiq_2f_description)/config/2f-85/physical_parameters.yaml"
+    visual_parameters_file="$(find robotiq_2f_description)/config/2f-85/visual_parameters.yaml"
+    transmission_hw_interface="hardware_interface/EffortJointInterface"
+  />
+</robot>
