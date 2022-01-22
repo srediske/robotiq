@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
 
-  <xacro:include filename="inc/finger_macro.xacro"/>
-  <xacro:include filename="inc/palm_macro.xacro"/>
-  <xacro:include filename="inc/robotiq_common.xacro"/>
+  <xacro:include filename="finger_macro.xacro"/>
+  <xacro:include filename="palm_macro.xacro"/>
+  <xacro:include filename="robotiq_common.xacro"/>
 
   <xacro:macro name="robotiq_2f_assembler" params="
     prefix
