@@ -8,7 +8,7 @@
     visual_parameters_file
     transmission_hw_interface:=hardware_interface/EffortJointInterface"
   >
-    <xacro:include filename="$(find robotiq_2f_description)/urdf/robotiq_2f_macro.xacro"/>
+    <xacro:include filename="$(find robotiq_2f_description)/urdf/inc/robotiq_2f_macro.xacro"/>
 
     <xacro:robotiq_2f_assembler
       prefix="${prefix}"
