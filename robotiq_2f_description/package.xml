@@ -11,9 +11,7 @@
 
   <license>BSD</license>
 
-  <url type="website">http://ros.org/wiki/robotiq</url>
-  <url type="official_repository">https://github.com/ros-industrial/robotiq</url>
-  <url type="internal_repository">https://gitlab.zal.aero/stephan.rediske/robotiq</url>
+  <url type="repository">https://github.com/srediske/robotiq/robotiq_2f_description</url>
 
   <buildtool_depend>catkin</buildtool_depend>
 

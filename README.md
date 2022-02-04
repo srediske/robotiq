@@ -37,7 +37,7 @@ mkdir -p catkin_ws/src && cd catkin_ws/src
 
 # clone the repositories
 git clone https://github.com/roboticsgroup/roboticsgroup_gazebo_plugins
-git clone https://gitlab.zal.aero/stephan.rediske/robotiq
+git clone https://github.com/srediske/robotiq
 
 # install dependencies
 sudo apt update
